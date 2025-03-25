@@ -1,0 +1,35 @@
+<div class="notes-container">
+  <table class="notes-table">
+    <thead>
+      <tr>
+        <th *ngFor="let header of headers">{{header}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let ue of ueData">
+        <tr *ngFor="let matiere of ue.matieres; let first = first" 
+            [class.ue-row]="first">
+          
+          <td *ngIf="first" [attr.rowspan]="ue.matieres.length">{{ue.nom}}</td>
+          <td *ngIf="first" [attr.rowspan]="ue.matieres.length">{{ue.coefficient}}</td>
+          
+          <td>{{matiere.nom}}</td>
+          <td>{{matiere.coefficient}}</td>
+          <td>{{matiere.ponderation || '-'}}</td>
+          <td>{{matiere.cc || '-'}}</td>
+          <td>{{matiere.exam || '-'}}</td>
+          <td>{{matiere.moyenne || '-'}}</td>
+          <td>{{matiere.etat || '-'}}</td>
+          <td class="action-cell">
+            <button class="download-btn" (click)="handleDownload(matiere)">
+              <i class="download-icon">↓</i> Télécharger
+            </button>
+            <button class="reclamation-btn" (click)="handleReclamation(matiere)">
+              <i class="reclamation-icon">!</i> Réclamation
+            </button>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+</div>
