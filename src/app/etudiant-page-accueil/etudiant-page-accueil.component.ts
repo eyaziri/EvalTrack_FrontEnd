@@ -7,7 +7,7 @@ import { RouterOutlet } from '@angular/router';
 @Component({
   selector: 'app-etudiant-page-accueil',
   standalone: true,
-  imports: [SideBarComponent, HeaderComponent, CardComponent,RouterOutlet],
+  imports: [SideBarComponent, HeaderComponent, CardComponent],
   templateUrl: './etudiant-page-accueil.component.html',
   styleUrls: ['./etudiant-page-accueil.component.scss']
 })

@@ -1,0 +1,48 @@
+<div class="notes-container">
+  <h2 class="title">Ajout d'une note</h2>
+
+  <div class="filters">
+    <label>Nom matière</label>
+    <select [(ngModel)]="selectedMatiere" class="dropdown">
+      <option value="matiere1">Matière 1</option>
+      <option value="matiere2">Matière 2</option>
+    </select>
+
+    <label>Type devoir</label>
+    <select [(ngModel)]="selectedTypeDevoir" class="dropdown">
+      <option value="DS">DS</option>
+      <option value="Examen">Examen</option>
+    </select>
+  </div>
+
+  <div class="import-buttons">
+    <!-- Bouton toujours affiché -->
+    <button class="import-button">Importer PDF des notes</button>
+
+    <!-- Bouton affiché uniquement si le type de devoir est "Examen" -->
+    <button class="import-button" *ngIf="isExamen()">Importer le drive des PDFs des examens</button>
+  </div>
+
+  <table class="notes-table">
+    <thead>
+      <tr>
+        <th>N°</th>
+        <th>CIN</th>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Note</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of students">
+        <td>{{ student.num }}</td>
+        <td>{{ student.cin }}</td>
+        <td>{{ student.nom }}</td>
+        <td>{{ student.prenom }}</td>
+        <td>{{ student.note }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button class="validate-button">Valider</button>
+</div>

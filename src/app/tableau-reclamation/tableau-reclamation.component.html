@@ -1,0 +1,20 @@
+<table border="1">
+  <thead>
+    <tr>
+      <th>N°</th>
+      <th>Cin</th>
+      <th>Description</th>
+      <th>État</th>
+      <th>Mail</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let personne of personnes">
+      <td>{{ personne.numero }}</td>
+      <td>{{ personne.cin }}</td>
+      <td>{{ personne.description }}</td>
+      <td>{{ personne.etat ? '✅' : '❌' }}</td>
+      <td>{{ personne.mail ? '✉️' : '' }}</td>
+    </tr>
+  </tbody>
+</table>

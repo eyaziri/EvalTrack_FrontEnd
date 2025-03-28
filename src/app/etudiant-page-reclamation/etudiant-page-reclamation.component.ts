@@ -6,7 +6,7 @@ import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-etudiant-page-reclamation',
-  imports: [SideBarComponent, HeaderStandardComponent, ContentReclamationComponent,RouterOutlet],
+  imports: [SideBarComponent, HeaderStandardComponent, ContentReclamationComponent,],
   templateUrl: './etudiant-page-reclamation.component.html',
   styleUrl: './etudiant-page-reclamation.component.scss'
 })

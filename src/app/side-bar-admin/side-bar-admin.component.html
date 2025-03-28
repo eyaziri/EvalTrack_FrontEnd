@@ -1,0 +1,89 @@
+<nav class="sidebar">
+  <img src="/src/assets/images/logo.png" alt="Logo" class="logo"/>
+  
+  <ul>
+    <li>
+      <a routerLink="/acceuil">🏠Accueil</a>
+    </li>
+    <li>
+      <a routerLink="/notes">📊 Notes</a>
+
+      <!-- Filtres dynamiques -->
+      <div *ngIf="showFilters" class="filters">
+        <!-- Session -->
+        <div (click)="toggleSessions()">Session</div>
+        <div *ngIf="showSessions" class="sub-menu">
+          <div *ngFor="let session of sessions" (click)="selectSession(session)">
+            {{ session }}
+          </div>
+        </div>
+
+        <!-- Semestre -->
+        <div (click)="toggleSemestres()">Semestre</div>
+        <div *ngIf="showSemestres" class="sub-menu">
+          <div *ngFor="let semestre of semestres" (click)="selectSemestre(semestre)">
+            {{ semestre }}
+          </div>
+        </div>
+
+        <!-- Section -->
+        <div (click)="toggleSections()">Section</div>
+        <div *ngIf="showSections" class="sub-menu">
+          <div *ngFor="let section of sections" (click)="selectSection(section)">
+            {{ section }}
+          </div>
+        </div>
+
+        <!-- Niveau -->
+        <div (click)="toggleNiveaux()">Niveau</div>
+        <div *ngIf="showNiveaux" class="sub-menu">
+          <div *ngFor="let niveau of niveaux" (click)="selectNiveau(niveau)">
+            {{ niveau }}
+          </div>
+        </div>
+
+        <!-- Module (ajout dynamique) -->
+        <div (click)="toggleModules()">Module</div>
+        <div *ngIf="showModules" class="sub-menu">
+          <div *ngFor="let module of modules" (click)="selectModule(module)">
+            {{ module }}
+          </div>
+        </div>
+      </div>
+    </li>
+    <li>
+      <a routerLink="/liste-etudiant">👨‍🎓 Liste des étudiants</a>
+      
+      <!-- Filtres de section et niveau -->
+      <div *ngIf="showFilters" class="filters">
+        <!-- Section -->
+        <div (click)="toggleSections()">Section</div>
+        <div *ngIf="showSections" class="sub-menu">
+          <div *ngFor="let section of sections" (click)="selectSection(section)">
+            {{ section }}
+          </div>
+        </div>
+
+        <!-- Niveau -->
+        <div (click)="toggleNiveaux()">Niveau</div>
+        <div *ngIf="showNiveaux" class="sub-menu">
+          <div *ngFor="let niveau of niveaux" (click)="selectNiveau(niveau)">
+            {{ niveau }}
+          </div>
+        </div>
+      </div>
+    </li>
+    <li>
+      <a routerLink="/configuration">⚙️ Configuration</a>
+    </li>
+    <li>
+      <a routerLink="/reclamation">📝 Reclamation</a>
+    </li>
+    <li>
+      <a routerLink="/ajout-module">📚 Ajout des Modules</a>
+    </li>
+    <li class="exit">
+      <a>⬅️ Exit</a>
+    </li>
+  </ul>
+</nav>

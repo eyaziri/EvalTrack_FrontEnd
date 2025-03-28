@@ -1,0 +1,21 @@
+
+.dashboard-container {
+  display: flex;
+  min-height: 100vh; // Permet l'expansion dynamique si le contenu est plus grand
+  background-color: #F9F7F7;
+  align-items: stretch; // Assure que la sidebar prend toute la hauteur du contenu
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+
+app-side-bar-admin {
+  flex-shrink: 0; // Empêche la réduction de la sidebar
+  height: auto; // Permet à la sidebar de s'étendre
+  min-height: 100vh; // Assure un minimum de hauteur
+}

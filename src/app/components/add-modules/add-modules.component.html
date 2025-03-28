@@ -1,0 +1,53 @@
+<div class="container">
+  <h2 class="title">Ajout des Modules</h2>
+
+  <!-- Sélection de la filière -->
+  <label class="label">Filière</label>
+  <select class="select" [(ngModel)]="selectedFiliere">
+    <option *ngFor="let filiere of filieres">{{ filiere }}</option>
+  </select>
+
+  <!-- Sélection du semestre -->
+  <label class="label">Semestre</label>
+  <select class="select" [(ngModel)]="selectedSemestre">
+    <option *ngFor="let semestre of semestres">{{ semestre }}</option>
+  </select>
+
+  <!-- Sélection du nombre de modules -->
+  <label class="label">Nombre de modules</label>
+  <select class="select" [(ngModel)]="selectedModule">
+    <option *ngFor="let module of modules" [value]="module">{{ module }}</option>
+  </select>
+
+  <!-- Bouton pour valider le nombre de modules -->
+  <button class="btn" (click)="generateModulesMatieres()">Modifier</button>
+
+  <!-- Étape 1 : Saisie du nombre de matières pour chaque module -->
+  <div *ngIf="showMatieresInputs">
+    <div *ngFor="let module of modulesMatieres">
+      <label class="label">Nombre de matières pour le module {{ module.id }}</label>
+      <input class="input" type="number" [(ngModel)]="module.nombreMatieres" />
+    </div>
+
+    <button class="btn" (click)="generateMatieresForms()">Modifier</button>
+  </div>
+
+  <!-- Étape 2 : Affichage des formulaires de matières -->
+  <div *ngIf="showMatieresForms">
+    <div *ngFor="let module of modulesMatieres">
+      <h3 class="module-title">Module {{ module.id }}</h3>
+      
+      <div *ngFor="let matiere of module.matieres" class="matiere-container">
+        <h4 class="matiere-title">Matière {{ matiere.id }}</h4>
+        <input class="input" type="text" placeholder="Nom de la matière" [(ngModel)]="matiere.nom" />
+        <input class="input" type="number" placeholder="Coefficient de la matière" [(ngModel)]="matiere.coefficient" />
+        <input class="input" type="number" placeholder="Nombre d’heures" [(ngModel)]="matiere.heures" />
+        <input class="input" type="text" placeholder="Mode d’évaluation" [(ngModel)]="matiere.evaluation" />
+      </div>
+    </div>
+    <!-- Bouton de confirmation -->
+<button *ngIf="showMatieresForms" class="btn confirm-btn" (click)="confirm()">Confirmer</button>
+
+  </div>
+  
+</div>

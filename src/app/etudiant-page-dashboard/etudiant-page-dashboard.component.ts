@@ -7,7 +7,7 @@ import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-etudiant-page-dashboard',
-  imports: [SideBarComponent, HeaderStandardComponent, ContentDashboardComponent, NotesTableComponent,RouterOutlet],
+  imports: [SideBarComponent, HeaderStandardComponent, ContentDashboardComponent, NotesTableComponent],
   templateUrl: './etudiant-page-dashboard.component.html',
   styleUrl: './etudiant-page-dashboard.component.scss'
 })

@@ -1,0 +1,38 @@
+<div class="student-list-container">  
+  <div class="header">
+    <h2>Liste des étudiants</h2>
+    <input
+      type="file"
+      accept="application/pdf"
+      (change)="onFileSelected($event)"
+      class="hidden-file-input"
+      id="fileInput"
+    />
+    <button class="download-btn" (click)="document.getElementById('fileInput')?.click()">
+      📥 Télécharger une liste
+    </button>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>CIN</th>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Email</th>
+        <th>Section</th>
+        <th>Niveau</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of filteredStudents">
+        <td>{{ student.cin }}</td>
+        <td>{{ student.nom }}</td>
+        <td>{{ student.prenom }}</td>
+        <td>{{ student.email }}</td>
+        <td>{{ student.section }}</td>
+        <td>{{ student.niveau }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
