@@ -1,21 +1,29 @@
 import { Component } from '@angular/core';
 import { StudentService } from '../services/student.service';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
+
 
 @Component({
   selector: 'app-side-bar-admin',
-  imports: [CommonModule],
+  imports: [CommonModule,RouterModule],
   templateUrl: './side-bar-admin.component.html',
   styleUrl: './side-bar-admin.component.scss',
 })
 export class SideBarAdminComponent {
 
-  showFilters = false;
+  // Variables pour les filtres de Notes
+  showFiltersNotes = false;
   showSessions = false;
   showSemestres = false;
-  showSections = false;
-  showNiveaux = false;
+  showSectionsNotes = false;
+  showNiveauxNotes = false;
   showModules = false;
+
+  // Variables pour les filtres de Liste des étudiants
+  showFiltersEtudiants = false;
+  showSectionsEtudiants = false;
+  showNiveauxEtudiants = false;
 
   sessions = ['Principal', 'Rattrapage'];
   semestres = ['Semestre 1', 'Semestre 2'];
@@ -31,8 +39,9 @@ export class SideBarAdminComponent {
 
   constructor(private studentService: StudentService) {}
 
-  toggleFilters() {
-    this.showFilters = !this.showFilters;
+  // Méthodes pour gérer l'affichage des filtres (Notes)
+  toggleFiltersNotes() {
+    this.showFiltersNotes = !this.showFiltersNotes;
   }
 
   toggleSessions() {
@@ -43,18 +52,32 @@ export class SideBarAdminComponent {
     this.showSemestres = !this.showSemestres;
   }
 
-  toggleSections() {
-    this.showSections = !this.showSections;
+  toggleSectionsNotes() {
+    this.showSectionsNotes = !this.showSectionsNotes;
   }
 
-  toggleNiveaux() {
-    this.showNiveaux = !this.showNiveaux;
+  toggleNiveauxNotes() {
+    this.showNiveauxNotes = !this.showNiveauxNotes;
   }
 
   toggleModules() {
     this.showModules = !this.showModules;
   }
 
+  // Méthodes pour gérer l'affichage des filtres (Liste des étudiants)
+  toggleFiltersEtudiants() {
+    this.showFiltersEtudiants = !this.showFiltersEtudiants;
+  }
+
+  toggleSectionsEtudiants() {
+    this.showSectionsEtudiants = !this.showSectionsEtudiants;
+  }
+
+  toggleNiveauxEtudiants() {
+    this.showNiveauxEtudiants = !this.showNiveauxEtudiants;
+  }
+
+  // Sélection des éléments dans les filtres (Notes)
   selectSession(session: string) {
     this.selectedSession = session;
   }
@@ -70,6 +93,7 @@ export class SideBarAdminComponent {
   selectNiveau(niveau: string) {
     this.studentService.setSelectedNiveau(niveau);
   }
+
   selectModule(module: string) {
     this.selectedModule = module;
   }
@@ -80,4 +104,3 @@ export class SideBarAdminComponent {
     }
   }
 }
-

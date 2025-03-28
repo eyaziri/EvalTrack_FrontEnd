@@ -14,7 +14,7 @@ import { AdminPageAcceuilComponent } from "./admin-page-acceuil/admin-page-acceu
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [EtudiantPageAccueilComponent, EtudiantPageConfigurationComponent, EtudiantPageReclamationComponent, EtudiantPageDashboardComponent, AdminPageListeEtudiantAdminComponent, AdminPageReclamationComponent, AdminPageConfigurationComponent, AdminPageNotesComponent, AdminPageAjoutModuleComponent, AdminPageAcceuilComponent],
+  imports: [EtudiantPageAccueilComponent, EtudiantPageConfigurationComponent, EtudiantPageReclamationComponent, EtudiantPageDashboardComponent, AdminPageListeEtudiantAdminComponent, AdminPageReclamationComponent, AdminPageConfigurationComponent, AdminPageNotesComponent, AdminPageAjoutModuleComponent, AdminPageAcceuilComponent,RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

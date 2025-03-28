@@ -3,87 +3,79 @@
   
   <ul>
     <li>
-      <a routerLink="/acceuil">🏠Accueil</a>
+      <a>🏠Accueil</a>
     </li>
-    <li>
-      <a routerLink="/notes">📊 Notes</a>
-
-      <!-- Filtres dynamiques -->
-      <div *ngIf="showFilters" class="filters">
-        <!-- Session -->
-        <div (click)="toggleSessions()">Session</div>
-        <div *ngIf="showSessions" class="sub-menu">
-          <div *ngFor="let session of sessions" (click)="selectSession(session)">
-            {{ session }}
+        <li>
+          <a (click)="toggleFiltersNotes()" [routerLink]="['/admin/notes']">📊 Notes</a>
+          <div *ngIf="showFiltersNotes" class="filters">
+            <div (click)="toggleSessions()">Session</div>
+            <div *ngIf="showSessions" class="sub-menu">
+              <div *ngFor="let session of sessions" (click)="selectSession(session)">
+                {{ session }}
+              </div>
+            </div>
+  
+            <div (click)="toggleSemestres()">Semestre</div>
+            <div *ngIf="showSemestres" class="sub-menu">
+              <div *ngFor="let semestre of semestres" (click)="selectSemestre(semestre)">
+                {{ semestre }}
+              </div>
+            </div>
+  
+            <div (click)="toggleSectionsNotes()">Section</div>
+            <div *ngIf="showSectionsNotes" class="sub-menu">
+              <div *ngFor="let section of sections" (click)="selectSection(section)">
+                {{ section }}
+              </div>
+            </div>
+  
+            <div (click)="toggleNiveauxNotes()">Niveau</div>
+            <div *ngIf="showNiveauxNotes" class="sub-menu">
+              <div *ngFor="let niveau of niveaux" (click)="selectNiveau(niveau)">
+                {{ niveau }}
+              </div>
+            </div>
+  
+            <div (click)="toggleModules()">Module</div>
+            <div *ngIf="showModules" class="sub-menu">
+              <div *ngFor="let module of modules" (click)="selectModule(module)">
+                {{ module }}
+              </div>
+            </div>
           </div>
-        </div>
-
-        <!-- Semestre -->
-        <div (click)="toggleSemestres()">Semestre</div>
-        <div *ngIf="showSemestres" class="sub-menu">
-          <div *ngFor="let semestre of semestres" (click)="selectSemestre(semestre)">
-            {{ semestre }}
+        </li>
+  
+        <li>
+          <a (click)="toggleFiltersEtudiants()" [routerLink]="['/admin/liste-etudiant']">👨‍🎓 Liste des étudiants</a>
+          <div *ngIf="showFiltersEtudiants" class="filters">
+            <div (click)="toggleSectionsEtudiants()">Section</div>
+            <div *ngIf="showSectionsEtudiants" class="sub-menu">
+              <div *ngFor="let section of sections" (click)="selectSection(section)">
+                {{ section }}
+              </div>
+            </div>
+  
+            <div (click)="toggleNiveauxEtudiants()">Niveau</div>
+            <div *ngIf="showNiveauxEtudiants" class="sub-menu">
+              <div *ngFor="let niveau of niveaux" (click)="selectNiveau(niveau)">
+                {{ niveau }}
+              </div>
+            </div>
           </div>
-        </div>
-
-        <!-- Section -->
-        <div (click)="toggleSections()">Section</div>
-        <div *ngIf="showSections" class="sub-menu">
-          <div *ngFor="let section of sections" (click)="selectSection(section)">
-            {{ section }}
-          </div>
-        </div>
-
-        <!-- Niveau -->
-        <div (click)="toggleNiveaux()">Niveau</div>
-        <div *ngIf="showNiveaux" class="sub-menu">
-          <div *ngFor="let niveau of niveaux" (click)="selectNiveau(niveau)">
-            {{ niveau }}
-          </div>
-        </div>
-
-        <!-- Module (ajout dynamique) -->
-        <div (click)="toggleModules()">Module</div>
-        <div *ngIf="showModules" class="sub-menu">
-          <div *ngFor="let module of modules" (click)="selectModule(module)">
-            {{ module }}
-          </div>
-        </div>
-      </div>
-    </li>
-    <li>
-      <a routerLink="/liste-etudiant">👨‍🎓 Liste des étudiants</a>
-      
-      <!-- Filtres de section et niveau -->
-      <div *ngIf="showFilters" class="filters">
-        <!-- Section -->
-        <div (click)="toggleSections()">Section</div>
-        <div *ngIf="showSections" class="sub-menu">
-          <div *ngFor="let section of sections" (click)="selectSection(section)">
-            {{ section }}
-          </div>
-        </div>
-
-        <!-- Niveau -->
-        <div (click)="toggleNiveaux()">Niveau</div>
-        <div *ngIf="showNiveaux" class="sub-menu">
-          <div *ngFor="let niveau of niveaux" (click)="selectNiveau(niveau)">
-            {{ niveau }}
-          </div>
-        </div>
-      </div>
-    </li>
-    <li>
-      <a routerLink="/configuration">⚙️ Configuration</a>
-    </li>
-    <li>
-      <a routerLink="/reclamation">📝 Reclamation</a>
-    </li>
-    <li>
-      <a routerLink="/ajout-module">📚 Ajout des Modules</a>
-    </li>
-    <li class="exit">
-      <a>⬅️ Exit</a>
-    </li>
-  </ul>
-</nav>
+        </li>
+  
+        <li>
+          <a>⚙️ Configuration</a>
+        </li>
+        <li>
+          <a>📝 Reclamation</a>
+        </li>
+        <li>
+          <a>📝 Ajout des Modules</a>
+        </li>
+        <li class="exit">
+          <a>⬅️ Exit</a>
+        </li>
+      </ul>
+  </nav>
+  
