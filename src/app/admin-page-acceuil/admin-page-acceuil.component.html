@@ -1,0 +1,22 @@
+
+<div class="dashboard-container">
+   
+    <app-side-bar-admin></app-side-bar-admin>
+     
+     <div class="main-content">
+   
+       <app-header-standard></app-header-standard>
+      
+       <div class="admin-greeting">
+        Bonjour, cher administrateur 👋
+      </div>
+      
+       <div class="cards">
+        
+        <app-card icon="fa-solid fa-circle-check" color="darkgreen" title="Nombre des étudiants réussis  " [count]="300"></app-card>
+        <app-card icon="fa-solid fa-thumbs-down" color="darkred" title="Nombre des étudiants  échoués" [count]="50"></app-card>
+      </div>
+ 
+     </div>
+   </div>
+   

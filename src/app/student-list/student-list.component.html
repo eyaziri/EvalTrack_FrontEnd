@@ -1,0 +1,54 @@
+<div class="student-list-container">  
+  <div class="header">
+    <h2>Liste des étudiants</h2>
+  </div>
+  <div class="choix">
+    <label>
+      <input type="radio" [(ngModel)]="action" value="ajouter" /> Ajouter une liste des étudiants
+    </label>
+    <label>
+      <input type="radio" [(ngModel)]="action" value="consulter" /> Consulter la liste des étudiants
+    </label>
+  </div>
+<div>
+  <select [(ngModel)]="selectedSection" class="dropdown">
+    <option value="" disabled selected>Section</option>
+    <option *ngFor="let section of sections" [value]="section">{{ section}}</option>
+  </select>
+  <select [(ngModel)]="selectedSemestre" class="dropdown">
+    <option value="" disabled selected>Semestre</option>
+    <option *ngFor="let semestre of semestres" [value]="semestre">{{ semestre }}</option>
+  </select>
+  <button   *ngIf="action === 'consulter'" class="validate-button">Consulter</button> 
+  <input
+  *ngIf="action === 'ajouter'"
+    type="file"
+    accept="application/pdf"
+    (change)="onFileSelected($event)"
+    class="file-input"
+    id="fileInput"
+  />
+  
+</div>
+  <table>
+    <thead>
+      <tr>
+        <th>CIN</th>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Email</th>
+        <th>Mot de passe</th>
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let etudiant of etudiants">
+        <td>{{ etudiant[0]}}</td>
+        <td>{{  etudiant[1] }}</td>
+        <td>{{  etudiant[2] }}</td>
+        <td>{{ etudiant[3] }}</td>
+        <td>{{ etudiant[4] }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <button class="add-button" [disabled]="etudiants.length === 0">Ajouter</button>
