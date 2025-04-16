@@ -1,5 +1,12 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+<<<<<<< HEAD
+=======
+import { LoginComponent } from "./login/login.component";
+import { ForgotPasswordComponent } from "./forgotpassword/forgotpassword.component";
+
+
+>>>>>>> origin/ouma
 import { EtudiantPageAccueilComponent } from "./etudiant-page-accueil/etudiant-page-accueil.component";
 import { EtudiantPageConfigurationComponent } from "./etudiant-page-configuration/etudiant-page-configuration.component";
 import { EtudiantPageReclamationComponent } from "./etudiant-page-reclamation/etudiant-page-reclamation.component";
@@ -14,7 +21,12 @@ import { AdminPageAcceuilComponent } from "./admin-page-acceuil/admin-page-acceu
 @Component({
   selector: 'app-root',
   standalone: true,
+<<<<<<< HEAD
   imports: [EtudiantPageAccueilComponent, EtudiantPageConfigurationComponent, EtudiantPageReclamationComponent, EtudiantPageDashboardComponent, AdminPageListeEtudiantAdminComponent, AdminPageReclamationComponent, AdminPageConfigurationComponent, AdminPageNotesComponent, AdminPageAjoutModuleComponent, AdminPageAcceuilComponent,RouterOutlet],
+=======
+  imports: [RouterOutlet, LoginComponent, ForgotPasswordComponent,EtudiantPageAccueilComponent, EtudiantPageConfigurationComponent, EtudiantPageReclamationComponent, EtudiantPageDashboardComponent, AdminPageListeEtudiantAdminComponent, AdminPageReclamationComponent, AdminPageConfigurationComponent, AdminPageNotesComponent, AdminPageAjoutModuleComponent, AdminPageAcceuilComponent,RouterOutlet],
+
+>>>>>>> origin/ouma
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })

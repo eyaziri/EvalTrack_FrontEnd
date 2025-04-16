@@ -1,5 +1,6 @@
 .sidebar {
   width: 250px;
+<<<<<<< HEAD
   height: 100vh;
   background-color: #112D4E;
   border-radius:25px ;
@@ -27,10 +28,63 @@ a {
 }
 
 li:hover {
+=======
+  height: 640px;
+  background-color: #112D4E;
+  left: 0; /* Colle la barre à gauche */
+  top: 0; /* Colle la barre en haut */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Répartition du contenu */
+  padding: 20px 10px; /* Espacement interne */
+  color: #fffefe;
+  font-family: Arial, sans-serif;
+  border-radius: 40px 40px 40px 40px; /* Coin arrondi en haut à droite */
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+}
+
+.logo {
+  width: 250px;
+  margin-bottom: 20px;
+}
+.menu-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px 10px;
+  cursor: pointer;
+  font-size: 16px;
+
+  
+
+  i {
+    width: 28px;
+    height: 28px;
+    
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
+
+  a {
+    font-size: 20px;
+    color: #fffefe;
+
+  }
+  .icone {
+    width: 45px;
+    height: 45px;
+    margin-right: 20px;
+    margin-left: -55px;
+    
+  }
+}
+.menu-item:hover{
+>>>>>>> origin/ouma
   background-color: #3F72AF;
   border-radius: 8px;
 }
 
+<<<<<<< HEAD
 .exit:hover {
   background-color: #F9F7F7;
   color: #112D4E;
@@ -42,3 +96,37 @@ li:hover {
   margin-right: -10px;
   
 }
+=======
+.exit:hover{
+  background-color: #3F72AF;
+  border-radius: 8px;
+}
+
+
+
+
+.exit{
+  display: flex;
+    align-items: center;
+    gap: 18px;
+    
+    cursor: pointer;
+    margin-top: 110px;
+    margin-left: -15px;
+
+  
+    
+    a {
+      font-size: 20px;
+      color: #fffefe;
+  }
+}
+.icon-exit {
+  width: 80px;
+  height: 80px;
+  background-size: contain;
+}
+  
+
+
+>>>>>>> origin/ouma

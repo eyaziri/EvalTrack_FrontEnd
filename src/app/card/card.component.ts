@@ -11,4 +11,8 @@ export class CardComponent {
   @Input() icon: string = '';
   @Input() title: string = '';
   @Input() count: number = 0;
+<<<<<<< HEAD
+=======
+  @Input() colorIcon :string='';
+>>>>>>> origin/ouma
 }

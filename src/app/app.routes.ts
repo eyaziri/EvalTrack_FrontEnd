@@ -1,4 +1,10 @@
 import { Routes } from '@angular/router';
+<<<<<<< HEAD
+=======
+
+import { LoginComponent } from './login/login.component';
+import { ForgotPasswordComponent } from './forgotpassword/forgotpassword.component';
+>>>>>>> origin/ouma
 import { EtudiantPageAccueilComponent } from './etudiant-page-accueil/etudiant-page-accueil.component';
 import { EtudiantPageDashboardComponent } from './etudiant-page-dashboard/etudiant-page-dashboard.component';
 import { EtudiantPageConfigurationComponent } from './etudiant-page-configuration/etudiant-page-configuration.component';
@@ -9,16 +15,27 @@ import { AdminPageReclamationComponent } from './admin-page-reclamation/admin-pa
 import { AdminPageConfigurationComponent } from './admin-page-configuration/admin-page-configuration.component';  // Admin
 import { AdminPageNotesComponent } from './admin-page-notes/admin-page-notes.component';  // Admin
 import { AdminPageAjoutModuleComponent } from './admin-page-ajout-module/admin-page-ajout-module.component';  // Admin
+<<<<<<< HEAD
 
 import { RoleGuard } from './role.guard';  // Import du guard
 
 export const routes: Routes = [
   // Routes Etudiant
   { path: '', redirectTo: 'etudiant-page-accueil', pathMatch: 'full' },
+=======
+import { RoleGuard } from './role.guard';  // Import du guard
+
+
+export const routes: Routes = [
+  { path: 'login', component: LoginComponent },
+  { path: 'forgotpassword', component: ForgotPasswordComponent },
+  { path: '', redirectTo: '/login', pathMatch: 'full' }, // Redirection par défaut
+>>>>>>> origin/ouma
   { path: 'etudiant-page-accueil', component: EtudiantPageAccueilComponent },
   { path: 'etudiant-page-dashboard', component: EtudiantPageDashboardComponent },
   { path: 'etudiant-page-configuration', component: EtudiantPageConfigurationComponent },
   { path: 'etudiant-page-reclamation', component: EtudiantPageReclamationComponent },
+<<<<<<< HEAD
 
   // Routes Admin
   { 
@@ -26,6 +43,12 @@ export const routes: Routes = [
     component: AdminPageAcceuilComponent, 
     canActivate: [RoleGuard], 
     data: { role: 'admin' } 
+=======
+  { 
+    path: 'admin-acceuil', 
+    component: AdminPageAcceuilComponent, 
+   
+>>>>>>> origin/ouma
   },
   { 
     path: 'admin/liste-etudiant', 
@@ -58,3 +81,7 @@ export const routes: Routes = [
     data: { role: 'admin' } 
   }
 ];
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/ouma

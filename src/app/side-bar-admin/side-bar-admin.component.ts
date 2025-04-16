@@ -2,16 +2,26 @@ import { Component } from '@angular/core';
 import { StudentService } from '../services/student.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+<<<<<<< HEAD
 
 
 @Component({
   selector: 'app-side-bar-admin',
   imports: [CommonModule,RouterModule],
+=======
+import { DropdownModule } from 'primeng/dropdown';
+import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
+@Component({
+  selector: 'app-side-bar-admin',
+  imports: [CommonModule,RouterModule,DropdownModule,FormsModule],
+>>>>>>> origin/ouma
   templateUrl: './side-bar-admin.component.html',
   styleUrl: './side-bar-admin.component.scss',
 })
 export class SideBarAdminComponent {
 
+<<<<<<< HEAD
   // Variables pour les filtres de Notes
   showFiltersNotes = false;
   showSessions = false;
@@ -19,12 +29,15 @@ export class SideBarAdminComponent {
   showSectionsNotes = false;
   showNiveauxNotes = false;
   showModules = false;
+=======
+>>>>>>> origin/ouma
 
   // Variables pour les filtres de Liste des étudiants
   showFiltersEtudiants = false;
   showSectionsEtudiants = false;
   showNiveauxEtudiants = false;
 
+<<<<<<< HEAD
   sessions = ['Principal', 'Rattrapage'];
   semestres = ['Semestre 1', 'Semestre 2'];
   sections = ['Informatique', 'Gsil', 'Infotronique', 'Mécatronique'];
@@ -103,4 +116,22 @@ export class SideBarAdminComponent {
       this.modules.push(module);
     }
   }
+=======
+ /* sessions = ['Principal', 'Rattrapage'];
+  semestres = ['Semestre 1', 'Semestre 2'];
+  sections = ['Informatique', 'Gsil', 'Infotronique', 'Mécatronique'];
+  niveaux = ['1ère année', '2ème année', '3ème année'];
+  modules = ['Maths', 'Sécurité', 'Programmation', 'Réseaux', 'Base de données'];*/
+
+  
+
+  constructor(private studentService: StudentService,private router: Router) {}
+
+ 
+
+
+ 
+
+  
+>>>>>>> origin/ouma
 }

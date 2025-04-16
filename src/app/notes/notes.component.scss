@@ -11,8 +11,13 @@
 .title {
   font-size: 22px;
   color: teal;
+<<<<<<< HEAD
   font-style: italic;
   margin-bottom: 20px;
+=======
+  
+  margin-bottom: 35px;
+>>>>>>> origin/ouma
 }
 
 .filters {
@@ -20,6 +25,7 @@
   justify-content: center;
   align-items: center;
   gap: 15px;
+<<<<<<< HEAD
   margin-bottom: 20px;
 }
 
@@ -28,6 +34,13 @@
   border-radius: 5px;
   border: 1px solid #ddd;
 }
+=======
+  
+  margin-bottom: 20px;
+}
+
+
+>>>>>>> origin/ouma
 
 .import-buttons {
   display: flex;
@@ -67,7 +80,11 @@
 }
 
 .validate-button {
+<<<<<<< HEAD
   background-color: green;
+=======
+  background-color: darkcyan;
+>>>>>>> origin/ouma
   color: white;
   border: none;
   padding: 10px 15px;
@@ -78,3 +95,25 @@
 .validate-button:hover {
   background-color: darkgreen;
 }
+<<<<<<< HEAD
+=======
+
+/* Styling for the label */
+
+
+/* Styling for the select element */
+.dropdown {
+  background-color: #f9f9f9; /* Light grey background */
+  border: 2px solid darkcyan; /* Dark cyan border */
+  border-radius: 5px; /* Rounded corners */
+  padding: 10px; /* Padding for better spacing */
+  font-size: 14px; /* Font size for readability */
+  color: #333; /* Text color */
+  width: 130px; /* Set width */
+ 
+ 
+  cursor: pointer; /* Pointer cursor for interaction */
+  transition: all 0.3s ease; /* Smooth transition for focus and hover effects */
+}
+
+>>>>>>> origin/ouma

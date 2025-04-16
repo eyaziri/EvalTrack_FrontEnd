@@ -1,5 +1,10 @@
 .student-list-container {
   padding: 20px;
+<<<<<<< HEAD
+=======
+  background: white;
+  border-radius: 10px;
+>>>>>>> origin/ouma
 }
 
 .header {
@@ -11,6 +16,7 @@
   h2 {
     font-size: 24px;
     font-weight: bold;
+<<<<<<< HEAD
   }
 
   .hidden-file-input {
@@ -31,6 +37,14 @@
   .download-btn:hover {
     background-color: #0d8bf2;
   }
+=======
+    color: darkcyan;
+  }
+
+ 
+
+  
+>>>>>>> origin/ouma
 }
 
 table {
@@ -61,3 +75,53 @@ table {
 .delete-btn:hover {
   background-color: #ff1a1f;
 }
+<<<<<<< HEAD
+=======
+/* Styling for the select element */
+.dropdown {
+  background-color: #f9f9f9; /* Light grey background */
+  border: 2px solid darkcyan; /* Dark cyan border */
+  border-radius: 5px; /* Rounded corners */
+  padding: 10px; /* Padding for better spacing */
+  font-size: 14px; /* Font size for readability */
+  color: #333; /* Text color */
+  width: 130px; /* Set width */
+  margin: 15px;
+ 
+  cursor: pointer; /* Pointer cursor for interaction */
+  transition: all 0.3s ease; /* Smooth transition for focus and hover effects */
+}
+
+.validate-button {
+  background-color: darkcyan;
+  color: white;
+  border: none;
+  font-size: 16px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  margin: 15px;
+  cursor: pointer;
+}
+
+.validate-button:hover {
+  background-color: darkgreen;
+}
+.choix
+{
+  margin: 15px;
+}
+.file-input {
+  text-decoration: none;
+}
+.add-button {
+  background-color: darkcyan;
+  color: white;
+  border: none;
+  font-size: 16px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  margin-left: 1110px;
+  margin-top: 15px;
+  cursor: pointer;
+}
+>>>>>>> origin/ouma

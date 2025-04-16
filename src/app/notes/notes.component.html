@@ -1,5 +1,6 @@
 <div class="notes-container">
   <h2 class="title">Ajout d'une note</h2>
+<<<<<<< HEAD
 
   <div class="filters">
     <label>Nom matière</label>
@@ -10,6 +11,32 @@
 
     <label>Type devoir</label>
     <select [(ngModel)]="selectedTypeDevoir" class="dropdown">
+=======
+  
+  <div class="filters">
+    <select [(ngModel)]="selectedMatiere" class="dropdown">
+      <option value="" disabled selected >Session</option>
+      <option *ngFor="let session of sessions" [value]="session">{{ session }}</option>
+    </select>
+    <select [(ngModel)]="selectedMatiere" class="dropdown">
+      <option value="" disabled selected>Section</option>
+      <option *ngFor="let section of sections" [value]="section">{{ section}}</option>
+    </select>
+    <select [(ngModel)]="selectedMatiere" class="dropdown">
+      <option value="" disabled selected>Module</option>
+      <option *ngFor="let module of modules" [value]="module">{{ module }}</option>
+    </select>
+    <select [(ngModel)]="selectedMatiere" class="dropdown">
+      <option value="" disabled selected>Semestre</option>
+      <option *ngFor="let semestre of semestres" [value]="semestre">{{ semestre }}</option>
+    </select>   
+    <select [(ngModel)]="selectedMatiere" class="dropdown">
+      <option value="" disabled selected>Matière</option>
+      <option *ngFor="let matiere of matieres" [value]="matiere">{{ matiere }}</option>
+    </select>
+    <select [(ngModel)]="selectedTypeDevoir" class="dropdown">
+      <option value="" disabled selected>Type devoir</option>
+>>>>>>> origin/ouma
       <option value="DS">DS</option>
       <option value="Examen">Examen</option>
     </select>
