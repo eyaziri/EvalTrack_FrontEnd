@@ -1,75 +1,115 @@
 <div class="notes-container">
-  <h2 class="title">Ajout d'une note</h2>
-<<<<<<< HEAD
-
-  <div class="filters">
-    <label>Nom matière</label>
-    <select [(ngModel)]="selectedMatiere" class="dropdown">
-      <option value="matiere1">Matière 1</option>
-      <option value="matiere2">Matière 2</option>
-    </select>
-
-    <label>Type devoir</label>
-    <select [(ngModel)]="selectedTypeDevoir" class="dropdown">
-=======
+  <h2 class="title">Gestion des notes</h2>
   
+  <!-- Filtres -->
   <div class="filters">
-    <select [(ngModel)]="selectedMatiere" class="dropdown">
-      <option value="" disabled selected >Session</option>
+    <select [(ngModel)]="selectedSession" class="dropdown" [disabled]="isProcessing">
+      <option value="" disabled selected>Session</option>
       <option *ngFor="let session of sessions" [value]="session">{{ session }}</option>
     </select>
-    <select [(ngModel)]="selectedMatiere" class="dropdown">
+    
+    <select [(ngModel)]="selectedSection" class="dropdown" [disabled]="isProcessing">
       <option value="" disabled selected>Section</option>
-      <option *ngFor="let section of sections" [value]="section">{{ section}}</option>
+      <option *ngFor="let section of sections" [value]="section">{{ section }}</option>
     </select>
-    <select [(ngModel)]="selectedMatiere" class="dropdown">
+    
+    <select [(ngModel)]="selectedModule" class="dropdown" [disabled]="isProcessing">
       <option value="" disabled selected>Module</option>
       <option *ngFor="let module of modules" [value]="module">{{ module }}</option>
     </select>
-    <select [(ngModel)]="selectedMatiere" class="dropdown">
+    
+    <select [(ngModel)]="selectedSemestre" class="dropdown" [disabled]="isProcessing">
       <option value="" disabled selected>Semestre</option>
       <option *ngFor="let semestre of semestres" [value]="semestre">{{ semestre }}</option>
-    </select>   
-    <select [(ngModel)]="selectedMatiere" class="dropdown">
+    </select>
+    
+    <select [(ngModel)]="selectedMatiere" class="dropdown" [disabled]="isProcessing">
       <option value="" disabled selected>Matière</option>
       <option *ngFor="let matiere of matieres" [value]="matiere">{{ matiere }}</option>
     </select>
-    <select [(ngModel)]="selectedTypeDevoir" class="dropdown">
+    
+    <select [(ngModel)]="selectedTypeDevoir" class="dropdown" [disabled]="isProcessing">
       <option value="" disabled selected>Type devoir</option>
->>>>>>> origin/ouma
       <option value="DS">DS</option>
       <option value="Examen">Examen</option>
     </select>
   </div>
 
-  <div class="import-buttons">
-    <!-- Bouton toujours affiché -->
-    <button class="import-button">Importer PDF des notes</button>
-
-    <!-- Bouton affiché uniquement si le type de devoir est "Examen" -->
-    <button class="import-button" *ngIf="isExamen()">Importer le drive des PDFs des examens</button>
+  <!-- Import des fichiers -->
+  <div class="import-section">
+    <div class="import-buttons">
+      <button class="import-button" 
+              (click)="triggerNotesFileInput()" 
+              [disabled]="isProcessing">
+        <i class="fas fa-file-import"></i> Importer PDF des notes
+      </button>
+      <input #notesFileInput type="file" accept=".pdf" 
+             (change)="onNotesFileSelected($event)" 
+             style="display: none;" 
+             [disabled]="isProcessing">
+      
+      <button class="import-button" 
+              *ngIf="isExamen()" 
+              (click)="triggerExamsFileInput()" 
+              [disabled]="isProcessing || students.length === 0">
+        <i class="fas fa-file-pdf"></i> Importer les examens PDF
+      </button>
+      <input #examsFileInput type="file" accept=".pdf" 
+             (change)="onExamsFileSelected($event)" 
+             style="display: none;" 
+             multiple 
+             [disabled]="isProcessing">
+    </div>
+    
+    <div class="status-message success" *ngIf="uploadStatus && !errorMessage">
+      <i class="fas fa-check-circle"></i> {{ uploadStatus }}
+    </div>
+    
+    <div class="status-message error" *ngIf="errorMessage">
+      <i class="fas fa-exclamation-circle"></i> {{ errorMessage }}
+    </div>
+    
+    <div class="file-info" *ngIf="notesFileName">
+      <i class="fas fa-file-pdf"></i> {{ notesFileName }}
+    </div>
   </div>
 
-  <table class="notes-table">
-    <thead>
-      <tr>
-        <th>N°</th>
-        <th>CIN</th>
-        <th>Nom</th>
-        <th>Prénom</th>
-        <th>Note</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let student of students">
-        <td>{{ student.num }}</td>
-        <td>{{ student.cin }}</td>
-        <td>{{ student.nom }}</td>
-        <td>{{ student.prenom }}</td>
-        <td>{{ student.note }}</td>
-      </tr>
-    </tbody>
-  </table>
+  <!-- Tableau des étudiants -->
+  <div class="table-container" *ngIf="students.length > 0">
+    <table class="notes-table">
+      <thead>
+        <tr>
+          <th>N°</th>
+          <th>CIN</th>
+          <th>Nom</th>
+          <th>Prénom</th>
+          <th>Note</th>
+          <th *ngIf="isExamen()">Examen PDF</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let student of students">
+          <td>{{ student.num }}</td>
+          <td>{{ student.cin }}</td>
+          <td>{{ student.nom }}</td>
+          <td>{{ student.prenom }}</td>
+          <td>
+            <input type="number" [(ngModel)]="student.note" 
+                   min="0" max="20" step="0.01" 
+                   [disabled]="isProcessing">
+          </td>
+          <td *ngIf="isExamen()">
+            <span *ngIf="student.examPdf" class="pdf-link" (click)="downloadExam(student)">
+              <i class="fas fa-file-pdf"></i> {{ student.examPdfName || 'Télécharger' }}
+            </span>
+            <span *ngIf="!student.examPdf" class="no-file">Aucun fichier</span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-  <button class="validate-button">Valider</button>
+  <div class="no-data" *ngIf="students.length === 0 && !isProcessing">
+    <i class="fas fa-info-circle"></i> Aucune donnée d'étudiant à afficher
+  </div>
 </div>

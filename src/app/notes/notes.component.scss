@@ -1,119 +1,246 @@
+/* Styles de base */
 .notes-container {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   padding: 20px;
-  background: white;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  width: 90%;
-  margin: auto;
-  text-align: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  color: #333;
 }
 
 .title {
-  font-size: 22px;
-  color: teal;
-<<<<<<< HEAD
-  font-style: italic;
-  margin-bottom: 20px;
-=======
-  
-  margin-bottom: 35px;
->>>>>>> origin/ouma
+  color: #2c3e50;
+  margin-bottom: 25px;
+  font-size: 24px;
+  font-weight: 600;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 10px;
 }
 
+/* Filtres */
 .filters {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-wrap: wrap;
   gap: 15px;
-<<<<<<< HEAD
-  margin-bottom: 20px;
+  margin-bottom: 25px;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+
+  .dropdown {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: white;
+    min-width: 150px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+
+    &:focus {
+      border-color: #3498db;
+      outline: none;
+    }
+
+    &:disabled {
+      background-color: #ecf0f1;
+      cursor: not-allowed;
+    }
+  }
 }
 
-.dropdown {
-  padding: 8px;
-  border-radius: 5px;
-  border: 1px solid #ddd;
+/* Section d'import */
+.import-section {
+  margin: 20px 0;
+  padding: 15px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
-=======
-  
-  margin-bottom: 20px;
-}
-
-
->>>>>>> origin/ouma
 
 .import-buttons {
   display: flex;
-  justify-content: center;
   gap: 15px;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
 }
 
 .import-button {
-  background-color: teal;
+  padding: 10px 15px;
+  background-color: #3498db;
   color: white;
   border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
+  border-radius: 4px;
   cursor: pointer;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.3s;
+
+  &:hover:not(:disabled) {
+    background-color: #2980b9;
+  }
+
+  &:disabled {
+    background-color: #95a5a6;
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+
+  i {
+    font-size: 16px;
+  }
 }
 
-.import-button:hover {
-  background-color: darkcyan;
+.file-info {
+  margin-top: 10px;
+  padding: 8px 12px;
+  background-color: #e8f4f8;
+  color: #2980b9;
+  border-radius: 4px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  i {
+    font-size: 16px;
+  }
+}
+
+.status-message {
+  margin-top: 10px;
+  padding: 10px 15px;
+  border-radius: 4px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  &.success {
+    background-color: #e8f5e9;
+    color: #28a745;
+  }
+
+  &.error {
+    background-color: #ffebee;
+    color: #dc3545;
+  }
+
+  i {
+    font-size: 16px;
+  }
+}
+
+/* Tableau */
+.table-container {
+  overflow-x: auto;
+  margin: 25px 0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  border-radius: 8px;
 }
 
 .notes-table {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 20px;
+  font-size: 14px;
+
+  th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+
+  th {
+    background-color: #3498db;
+    color: white;
+    font-weight: 600;
+    position: sticky;
+    top: 0;
+  }
+
+  tr:nth-child(even) {
+    background-color: #f8f9fa;
+  }
+
+  tr:hover {
+    background-color: #f1f1f1;
+  }
+
+  input[type="number"] {
+    width: 70px;
+    padding: 6px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    text-align: center;
+
+    &:focus {
+      border-color: #3498db;
+      outline: none;
+    }
+
+    &:disabled {
+      background-color: #ecf0f1;
+      cursor: not-allowed;
+    }
+  }
+
+  .pdf-link {
+    color: #3498db;
+    cursor: pointer;
+    text-decoration: underline;
+    transition: color 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    &:hover {
+      color: #2980b9;
+    }
+
+    i {
+      font-size: 16px;
+    }
+  }
+
+  .no-file {
+    color: #7f8c8d;
+    font-style: italic;
+  }
 }
 
-.notes-table th,
-.notes-table td {
-  padding: 10px;
-  border: 1px solid #ddd;
+.no-data {
+  padding: 20px;
   text-align: center;
+  color: #7f8c8d;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  i {
+    font-size: 18px;
+  }
 }
 
-.notes-table th {
-  background-color: #f4f4f4;
+/* Responsive */
+@media (max-width: 768px) {
+  .filters {
+    flex-direction: column;
+  }
+  
+  .import-buttons {
+    flex-direction: column;
+  }
+
+  .notes-table {
+    font-size: 13px;
+    
+    th, td {
+      padding: 8px 10px;
+    }
+  }
 }
-
-.validate-button {
-<<<<<<< HEAD
-  background-color: green;
-=======
-  background-color: darkcyan;
->>>>>>> origin/ouma
-  color: white;
-  border: none;
-  padding: 10px 15px;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-.validate-button:hover {
-  background-color: darkgreen;
-}
-<<<<<<< HEAD
-=======
-
-/* Styling for the label */
-
-
-/* Styling for the select element */
-.dropdown {
-  background-color: #f9f9f9; /* Light grey background */
-  border: 2px solid darkcyan; /* Dark cyan border */
-  border-radius: 5px; /* Rounded corners */
-  padding: 10px; /* Padding for better spacing */
-  font-size: 14px; /* Font size for readability */
-  color: #333; /* Text color */
-  width: 130px; /* Set width */
- 
- 
-  cursor: pointer; /* Pointer cursor for interaction */
-  transition: all 0.3s ease; /* Smooth transition for focus and hover effects */
-}
-
->>>>>>> origin/ouma

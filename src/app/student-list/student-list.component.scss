@@ -1,10 +1,7 @@
 .student-list-container {
   padding: 20px;
-<<<<<<< HEAD
-=======
   background: white;
   border-radius: 10px;
->>>>>>> origin/ouma
 }
 
 .header {
@@ -16,35 +13,8 @@
   h2 {
     font-size: 24px;
     font-weight: bold;
-<<<<<<< HEAD
-  }
-
-  .hidden-file-input {
-    display: none;
-  }
-
-  .download-btn {
-    background-color: #1da1f2;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 20px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
-  }
-
-  .download-btn:hover {
-    background-color: #0d8bf2;
-  }
-=======
     color: darkcyan;
   }
-
- 
-
-  
->>>>>>> origin/ouma
 }
 
 table {
@@ -75,21 +45,18 @@ table {
 .delete-btn:hover {
   background-color: #ff1a1f;
 }
-<<<<<<< HEAD
-=======
-/* Styling for the select element */
+
 .dropdown {
-  background-color: #f9f9f9; /* Light grey background */
-  border: 2px solid darkcyan; /* Dark cyan border */
-  border-radius: 5px; /* Rounded corners */
-  padding: 10px; /* Padding for better spacing */
-  font-size: 14px; /* Font size for readability */
-  color: #333; /* Text color */
-  width: 130px; /* Set width */
+  background-color: #f9f9f9;
+  border: 2px solid darkcyan;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 14px;
+  color: #333;
+  width: 130px;
   margin: 15px;
- 
-  cursor: pointer; /* Pointer cursor for interaction */
-  transition: all 0.3s ease; /* Smooth transition for focus and hover effects */
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .validate-button {
@@ -106,13 +73,15 @@ table {
 .validate-button:hover {
   background-color: darkgreen;
 }
-.choix
-{
+
+.choix {
   margin: 15px;
 }
+
 .file-input {
   text-decoration: none;
 }
+
 .add-button {
   background-color: darkcyan;
   color: white;
@@ -120,8 +89,34 @@ table {
   font-size: 16px;
   padding: 10px 15px;
   border-radius: 5px;
-  margin-left: 1110px;
   margin-top: 15px;
   cursor: pointer;
+  display: block;  // Utilisation de display block pour centrer le bouton
+  margin-left: auto;
+  margin-right: auto;
 }
->>>>>>> origin/ouma
+
+// Ajouter une réactivité pour les petits écrans
+@media (max-width: 768px) {
+  .student-list-container {
+    padding: 10px;
+  }
+
+  .header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .add-button {
+    margin-left: 0;
+  }
+
+  .dropdown {
+    width: 100%;
+    margin: 10px 0;
+  }
+
+  table {
+    font-size: 12px;
+  }
+}

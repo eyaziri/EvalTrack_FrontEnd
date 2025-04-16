@@ -31,14 +31,11 @@
                 "output": "/assets"
               }
             ],
-<<<<<<< HEAD
-            "styles": ["src/styles.scss"],
-=======
             "styles": [
               "@angular/material/prebuilt-themes/azure-blue.css",
+              "node_modules/@fortawesome/fontawesome-free/css/all.min.css",
               "src/styles.scss"
             ],
->>>>>>> origin/ouma
             "scripts": []
           },
           "configurations": {
@@ -94,14 +91,11 @@
                 "output": "/assets"
               }
             ],
-<<<<<<< HEAD
-            "styles": ["src/styles.scss"],
-=======
+
             "styles": [
               "@angular/material/prebuilt-themes/azure-blue.css",
               "src/styles.scss"
             ],
->>>>>>> origin/ouma
             "scripts": []
           }
         }
@@ -109,11 +103,7 @@
     }
   },
   "cli": {
-<<<<<<< HEAD
-    "analytics": "a8e87f10-d5e9-47a8-81bd-e5d366cbb64e"
-=======
+
     "analytics": "1cbfd0f2-e167-446d-9050-7d8036b89047"
- 
->>>>>>> origin/ouma
   }
 }

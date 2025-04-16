@@ -10,35 +10,25 @@
   },
   "private": true,
   "dependencies": {
-<<<<<<< HEAD
-=======
-    "@angular/cdk": "^19.2.8",
->>>>>>> origin/ouma
+    "@angular/animations": "^19.2.0",
+    "@angular/cdk": "^19.2.10",
     "@angular/common": "^19.2.0",
     "@angular/compiler": "^19.2.0",
     "@angular/core": "^19.2.0",
     "@angular/forms": "^19.2.0",
-<<<<<<< HEAD
+    "@angular/material": "^19.2.10",
     "@angular/platform-browser": "^19.2.0",
     "@angular/platform-browser-dynamic": "^19.2.0",
     "@angular/router": "^19.2.0",
-    "pdfjs-dist": "^2.15.349",
-    "rxjs": "~7.8.0",
-    "tslib": "^2.3.0",
-=======
-    "@angular/material": "^19.2.8",
-    "@angular/platform-browser": "^19.2.0",
-    "@angular/platform-browser-dynamic": "^19.2.0",
-    "@angular/router": "^19.2.0",
+    "@fortawesome/fontawesome-free": "^6.7.2",
     "axios": "^1.8.4",
     "file-saver": "^2.0.5",
-    "pdfjs-dist": "^2.15.349",
+    "pdfjs-dist": "^3.4.120",
     "primeicons": "^7.0.0",
-    "primeng": "^19.0.10",
+    "primeng": "^19.1.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "xlsx": "^0.18.5",
->>>>>>> origin/ouma
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
@@ -46,6 +36,7 @@
     "@angular/cli": "^19.2.4",
     "@angular/compiler-cli": "^19.2.0",
     "@types/jasmine": "~5.1.0",
+    "@types/pdfjs-dist": "^2.10.377",
     "jasmine-core": "~5.6.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.2.0",
@@ -53,5 +44,10 @@
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
     "typescript": "~5.7.2"
+  },
+  "resolutions": {
+    "@angular/cdk": "19.2.3",
+    "@angular/material": "19.2.3",
+    "pdfjs-dist": "3.4.120"
   }
 }
