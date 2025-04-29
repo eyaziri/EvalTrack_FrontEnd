@@ -12,7 +12,7 @@ import { AdminPageReclamationComponent } from './admin-page-reclamation/admin-pa
 import { AdminPageConfigurationComponent } from './admin-page-configuration/admin-page-configuration.component';  // Admin
 import { AdminPageNotesComponent } from './admin-page-notes/admin-page-notes.component';  // Admin
 import { AdminPageAjoutModuleComponent } from './admin-page-ajout-module/admin-page-ajout-module.component';  // Admin
-
+import { GestionFiliereComponent } from './gestion-filiere/gestion-filiere.component';
 import { RoleGuard } from './role.guard';  // Import du guard
 
 
@@ -60,5 +60,12 @@ export const routes: Routes = [
     component: AdminPageAjoutModuleComponent, 
     canActivate: [RoleGuard], 
     data: { role: 'admin' } 
+  },
+  {
+    path: 'admin/gestion-filiere',
+    component: GestionFiliereComponent,
+    canActivate: [RoleGuard],
+    data: { role: 'admin' }
   }
+  
 ];
