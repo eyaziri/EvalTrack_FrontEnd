@@ -244,3 +244,33 @@
     }
   }
 }
+
+.message {
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.success-message {
+  background-color: green;
+  color: white;
+}
+
+.error-message {
+  background-color: red;
+  color: white;
+}
+.add-button {
+  background-color: darkcyan;
+  color: white;
+  border: none;
+  font-size: 16px;
+  padding: 10px 15px;
+  border-radius: 5px;
+  margin-top: 15px;
+  cursor: pointer;
+  display: block;  // Utilisation de display block pour centrer le bouton
+  margin-left: 1100px;
+  margin-right: auto;
+}

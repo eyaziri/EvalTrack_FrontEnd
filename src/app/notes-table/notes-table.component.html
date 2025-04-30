@@ -1,4 +1,23 @@
 <div class="notes-container">
+    <h2 class="title">Suivie des notes</h2>
+    
+    <!-- Filtres -->
+    <div class="filters">
+      <select [(ngModel)]="selectedSection" class="dropdown"  [disabled]="isProcessing">
+        <option value="" disabled selected>Section</option>
+        <option *ngFor="let section of sections" [value]="section">{{ section }}</option>
+      </select>
+      
+     <select [(ngModel)]="selectedNiveau" class="dropdown" [disabled]="isProcessing">
+        <option value="" disabled selected>Niveau</option>
+        <option *ngFor="let niveau of niveaux" [value]="niveau">{{ niveau }}</option>
+      </select>
+  
+      <select [(ngModel)]="selectedSemestre" class="dropdown"   [disabled]="isProcessing">
+        <option value="" disabled selected>Semestre</option>
+        <option *ngFor="let semestre of semestres" [value]="semestre">{{ semestre }}</option>
+      </select>
+    </div>
   <table class="notes-table">
     <thead>
       <tr>

@@ -19,7 +19,7 @@ sections: any[] = [];
 action: string = 'consulter';
 selectedSemestre: string = '';
 selectedSection: string = '';
-semestres = ['Semestre 1', 'Semestre 2','Semestre 3','Semestre 4','Semestre 5'];
+semestres = ['Niveau 1', 'Niveau 2','Niveau 3'];
 newStudent = {
   nom: "Ameni",
   email: "Ameni@gmail.com",
@@ -29,8 +29,7 @@ newStudent = {
   section: 0 ,
   role:2 
 };
-showSuccessPopup: boolean = false;
-showErrorPopup: boolean = false;
+
 successMessage: string = '';
 errorMessage: string = '';
 constructor(private sectionS: SectionServiceService , private studentService :EtudiantServiceService) {

@@ -17,7 +17,7 @@
     <option *ngFor="let section of sections" [value]="section.idSection">{{ section.nomSection}}</option>
   </select>
   <select [(ngModel)]="selectedSemestre" class="dropdown">
-    <option value="" disabled selected>Semestre</option>
+    <option value="" disabled selected>Niveau</option>
     <option *ngFor="let semestre of semestres" [value]="semestre">{{ semestre }}</option>
   </select>
   <button   *ngIf="action === 'consulter'" class="validate-button"  (click)="listStudent()">Consulter</button> 

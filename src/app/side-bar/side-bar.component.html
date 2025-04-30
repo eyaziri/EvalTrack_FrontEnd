@@ -3,31 +3,39 @@
   <img src="../../assets/logo.png" alt="Logo" class="logo"/>
   
   <ul>
+    <!-- Accueil -->
     <li class="menu-item">
-      <img src="../../assets/acceuil.png" alt="acceuil" class="icone">
-      <a routerLink="/etudiant-page-accueil" 
-        routerLinkActive="active">Accueil</a>
+      <i class="fa-solid fa-house"></i>
+      <a routerLink="/etudiant-page-accueil" routerLinkActive="active">Accueil</a>
+    </li>
 
-    </li>
+    <!-- Notes -->
     <li class="menu-item">
-      <img src="../../assets/dash.png" alt="acceuil" class="icone">
-      <a routerLink="/etudiant-page-dashboard" 
-         routerLinkActive="active">Dashboard</a>
+      <i class="fa-solid fa-graduation-cap"></i>
+      <a  routerLink="/etudiant-page-dashboard" >Dashboard</a>
     </li>
+
     <li class="menu-item">
-      <img src="../../assets/conf.png" alt="acceuil" class="icone">
-      <a routerLink="/etudiant-page-configuration" 
-         routerLinkActive="active">Configuration</a>
+      <i class="fa-solid fa-graduation-cap"></i>
+      <a  routerLink="/etudiant-page-reclamation"  >Reclamation</a>
     </li>
+
+    
+
+    <!-- Configuration -->
     <li class="menu-item">
-      <img src="../../assets/reclam.png" alt="acceuil" class="icone">
-      <a routerLink="/etudiant-page-reclamation" 
-         routerLinkActive="active">Reclamation</a>
+      <i class="fa-solid fa-gears"></i>
+      <a routerLink="/etudiant-page-configuration" routerLinkActive="active">Configuration</a>
+    </li>
+
+  
+
+   
+
+    <!-- Exit -->
+    <li class="menu-item">
+      <i class="fa-solid fa-right-from-bracket"></i>
+      <a (click)="onLogout()">Exit</a>
     </li>
   </ul>
-    <div class="exit">
-      <img src="../../assets/exit.png" alt="exit" class="icon-exit">
-     
-      <a href="#">Exit</a>
-    </div>
 </nav>

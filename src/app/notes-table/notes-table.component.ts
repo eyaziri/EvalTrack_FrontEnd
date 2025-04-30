@@ -1,5 +1,6 @@
 import { Component   } from '@angular/core';
 import{CommonModule} from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { NgFor } from '@angular/common';
 interface Matiere {
   nom: string;
@@ -18,9 +19,10 @@ interface UE {
   matieres: Matiere[];
 }
 
+
 @Component({
   selector: 'app-notes-table',
-  imports: [CommonModule,NgFor],
+  imports: [CommonModule,NgFor,FormsModule ],
   templateUrl: './notes-table.component.html',
   styleUrl: './notes-table.component.scss'
 })
@@ -30,7 +32,13 @@ export class NotesTableComponent {
     'PONDERATION', 'CC', 'EXAM', 'MOYENNE', 
     'ETAT', 'RECLAMATION/TELECHARGEMENT'
   ];
-
+  selectedSection = '';
+  selectedNiveau = '';
+  selectedSemestre = '';
+  sections: any[] = [];
+  niveaux: any[] = [];
+  semestres: any[] = [];
+  isProcessing = false;
   ueData: UE[] = [
     {
       nom: 'UE 2.6',
