@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { RouterModule } from '@angular/router';
+import { EtudiantServiceService } from '../../Services/etudiant-service.service';
 
 @Component({
   standalone: true,
@@ -17,8 +18,8 @@ import { RouterModule } from '@angular/router';
 })
 export class LoginComponent {
   loginForm: FormGroup;
-
-  constructor(private fb: FormBuilder, private router: Router) {
+ 
+  constructor(private fb: FormBuilder, private router: Router, private etudiantService :EtudiantServiceService) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
@@ -38,4 +39,40 @@ export class LoginComponent {
       }
     }
   }
+
+
+
+  onLogin() {
+    const student = {
+      email: this.loginForm.get('email')?.value,
+      motDePasse: this.loginForm.get('password')?.value
+    };
+    console.log(student.email);
+    console.log(student.motDePasse);
+  
+    this.etudiantService.LoginStudent(student).subscribe({
+      next: (response) => {
+        console.log('Réponse reçue :', response);
+  
+        if (response && response.token && response.idRole) {
+          localStorage.setItem('token', response.token);
+          localStorage.setItem('idRole', response.idRole);
+  
+          if (response.idRole === 1) {
+            this.router.navigate(['/admin-acceuil']);
+          } else if (response.idRole === 2) {
+          
+            this.router.navigate(['/etudiant-page-accueil']);
+          } else {
+            alert('Rôle utilisateur non reconnu.');
+          }
+        } else {
+          alert('Réponse invalide du serveur.');
+        }
+      },
+      error: (error) => {
+      }
+    });
+  }
+  
 }

@@ -1,4 +1,5 @@
-<div class="student-list-container">  
+<div class="student-list-container"> 
+
   <div class="header">
     <h2>Liste des étudiants</h2>
   </div>
@@ -13,13 +14,13 @@
 <div>
   <select [(ngModel)]="selectedSection" class="dropdown">
     <option value="" disabled selected>Section</option>
-    <option *ngFor="let section of sections" [value]="section">{{ section}}</option>
+    <option *ngFor="let section of sections" [value]="section.idSection">{{ section.nomSection}}</option>
   </select>
   <select [(ngModel)]="selectedSemestre" class="dropdown">
     <option value="" disabled selected>Semestre</option>
     <option *ngFor="let semestre of semestres" [value]="semestre">{{ semestre }}</option>
   </select>
-  <button   *ngIf="action === 'consulter'" class="validate-button">Consulter</button> 
+  <button   *ngIf="action === 'consulter'" class="validate-button"  (click)="listStudent()">Consulter</button> 
   <input
   *ngIf="action === 'ajouter'"
     type="file"
@@ -30,27 +31,54 @@
   />
   
 </div>
-  <table>
-    <thead>
-      <tr>
-        <th>CIN</th>
-        <th>Nom</th>
-        <th>Prénom</th>
-        <th>Email</th>
-
-        <th>Mot de passe</th>
-        
-      </tr>
-    </thead>
-    <tbody>
+<div *ngIf="successMessage" class="message success-message">
+  {{ successMessage }}
+</div>
+<div *ngIf="errorMessage" class="message error-message">
+  {{ errorMessage }}
+</div>
+<table>
+  <thead>
+    <tr>
+      <th>CIN</th>
+      <th>Nom</th>
+      <th  *ngIf="action === 'ajouter'">Prénom</th>
+      <th>Email</th>
+      <th>Mot de passe</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- Si action est égal à "ajouter", on affiche les données sous forme d'index -->
+    <ng-container *ngIf="action === 'ajouter' && etudiants.length > 0">
       <tr *ngFor="let etudiant of etudiants">
-        <td>{{ etudiant[0]}}</td>
-        <td>{{  etudiant[1] }}</td>
-        <td>{{  etudiant[2] }}</td>
+        <td>{{ etudiant[0] }}</td>
+        <td>{{ etudiant[1] }}</td>
+        <td>{{ etudiant[2] }}</td>
         <td>{{ etudiant[3] }}</td>
         <td>{{ etudiant[4] }}</td>
       </tr>
-    </tbody>
-  </table>
-  <button class="add-button" [disabled]="etudiants.length === 0">Ajouter</button>
+    </ng-container>
+  
+    <!-- Sinon, on affiche les données sous forme d'objet -->
+    <ng-container *ngIf="action !== 'ajouter' && etudiants.length > 0; else noStudents">
+      <tr *ngFor="let etudiant of etudiants">
+        <td>{{ etudiant.cin }}</td>
+        <td>{{ etudiant.nom }}</td>
+        <td>{{ etudiant.email }}</td>
+        <td>{{ etudiant.motDePasse }}</td>
+      </tr>
+    </ng-container>
+    
+    <!-- Template pour afficher un message si aucun étudiant n'est trouvé dans la deuxième condition -->
+    <ng-template #noStudents>
+      <tr  *ngIf="action !== 'ajouter'">
+        <td colspan="4">Aucun étudiant trouvé.</td>
+      </tr>
+    </ng-template>
+  </tbody>
+  
+</table>
+
+<button *ngIf="action !== 'consulter'" class="add-button" [disabled]="etudiants.length === 0" (click)="addStudentsToDB()">Ajouter</button>
+
 

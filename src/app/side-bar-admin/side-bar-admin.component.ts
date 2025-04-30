@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { StudentService } from '../services/student.service';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { DropdownModule } from 'primeng/dropdown';
@@ -40,7 +39,7 @@ export class SideBarAdminComponent {
   selectedNiveau?: string;
   selectedModule?: string;
 
-  constructor(private studentService: StudentService, private router: Router) {}
+  constructor( private router: Router) {}
 
   // Méthodes d'affichage pour les filtres Notes
   toggleFiltersNotes() {
@@ -80,14 +79,14 @@ export class SideBarAdminComponent {
   selectSemestre(semestre: string) {
     this.selectedSemestre = semestre;
   }
-  selectSection(section: string) {
+  /*selectSection(section: string) {
     this.selectedSection = section;
     this.studentService.setSelectedSection(section);
   }
   selectNiveau(niveau: string) {
     this.selectedNiveau = niveau;
     this.studentService.setSelectedNiveau(niveau);
-  }
+  }*/
   selectModule(module: string) {
     this.selectedModule = module;
   }

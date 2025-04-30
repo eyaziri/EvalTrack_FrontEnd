@@ -1,12 +1,21 @@
 <div class="content">
-    <h2>Changement du mot de passe</h2>
-    <form>
-      <label>Mot de passe actuelle</label>
-      <input type="password" />
-      <label>Nouveau mot de passe</label>
-      <input type="password" />
-      <label>Verification de nouveau mot de passe</label>
-      <input type="password" />
-      <button type="submit">Modifier</button>
-    </form>
-  </div>
+  <h2>Changement du mot de passe</h2>
+  <form (ngSubmit)="update()">
+    <label>Email</label>
+    <input type="email" [(ngModel)]="email" name="email" required />
+
+    <label>Mot de passe actuelle</label>
+    <input type="password" [(ngModel)]="oldPassword" name="oldPassword" required />
+
+    <label>Nouveau mot de passe</label>
+    <input type="password" [(ngModel)]="newPassword" name="newPassword" required />
+
+    <label>Vérification de nouveau mot de passe</label>
+    <input type="password" [(ngModel)]="confirmPassword" name="confirmPassword" required />
+
+    <button type="submit">Modifier</button>
+  </form>
+
+  <div *ngIf="successMessage"  class="alert alert-success custom-alert">{{ successMessage }}</div>
+  <div *ngIf="errorMessage"  class="alert alert-danger custom-alert">{{ errorMessage }}</div>
+</div>

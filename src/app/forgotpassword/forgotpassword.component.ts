@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { CommonModule } from '@angular/common';
 
 import { Router } from '@angular/router';
+import { EtudiantServiceService } from '../../Services/etudiant-service.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -13,63 +14,57 @@ import { Router } from '@angular/router';
 })
 export class ForgotPasswordComponent {
   forgotPasswordForm: FormGroup;
+  verificationForm: FormGroup;
   showVerificationCode = false;
-  showResendLink = false;
   isSubmitting = false;
   isVerifying = false;
+  successMessage: string = '';
+errorMessage: string = '';
 
-  constructor(
-    private fb: FormBuilder,
-    private router: Router
-  ) {
+  constructor(private fb: FormBuilder ,private etudiantService : EtudiantServiceService) {
+    // Formulaire d'email
     this.forgotPasswordForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      verificationCode: ['']
+      email: ['', [Validators.required, Validators.email]]
+    });
+
+    // Formulaire de vérification
+    this.verificationForm = this.fb.group({
+      verificationCode: ['', [Validators.required]]
     });
   }
 
-  get email() {
-    return this.forgotPasswordForm.get('email');
-  }
-
   get verificationCode() {
-    return this.forgotPasswordForm.get('verificationCode')!;
-    // The ! tells TypeScript you're sure this control exists
+    return this.verificationForm.get('verificationCode');
   }
 
   onSubmit() {
-    if (this.forgotPasswordForm.invalid) return;
-
-    this.isSubmitting = true;
-    
-    // Simulate API call
-    setTimeout(() => {
-      this.showVerificationCode = true;
-      this.showResendLink = true;
-      this.isSubmitting = false;
-    }, 1000);
+    this.etudiantService.sendVerificationCode(this.forgotPasswordForm.get('email')?.value).subscribe({
+      next: (response) => {
+        console.log('Code sent successfully:', response);
+        // You can show a success message to the user here
+      },
+      error: (err) => {
+        console.error('Error sending code:', err);
+        // Show error to user if needed
+      }
+    });
+    this.showVerificationCode = true;
   }
 
   verifyCode() {
-    if (this.verificationCode?.invalid) return;
-
-    this.isVerifying = true;
-    
-    // Simulate verification
-    setTimeout(() => {
-      this.isVerifying = false;
-      this.router.navigate(['/reset-password']); // Redirect to password reset
-    }, 1000);
-  }
-
-  resendCode() {
-    this.isSubmitting = true;
-    this.showResendLink = false;
-    
-    // Simulate resend
-    setTimeout(() => {
-      this.isSubmitting = false;
-      this.showResendLink = true;
-    }, 1000);
+    const code = this.verificationForm.get('verificationCode')?.value;
+    console.log('Code saisi :', code);
+    this.etudiantService.VerifyCode(this.forgotPasswordForm.get('email')?.value,code).subscribe({
+      next: (response) => {
+        console.log('Code verified successfully:', response);
+        this.successMessage = 'Code vérifié avec succès. Veuillez vérifier votre boîte mail.';
+        this.errorMessage = '';  
+      },
+      error: (err) => {
+        console.error('Error verifying code:', err);
+        this.errorMessage = 'Code invalide ou expiré.';
+      this.successMessage = ''; 
+      }
+    });
   }
 }
