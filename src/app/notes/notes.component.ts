@@ -117,7 +117,7 @@ export class NotesComponent {
 
     if (target) {
       const selectedSession = target.value;
-      this.typeExam = selectedSession;
+      this.session = selectedSession;
     }
   }
   onSemestreChange(event: Event) {

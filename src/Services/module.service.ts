@@ -30,5 +30,29 @@ export class ModuleService {
       .catch(error => observer.error(error));
     });
   }
+
+  getModuleMatiere(idsection: number,semestre:number): Observable<any[]> {
+    const apiUrl = `http://localhost:8080/EvalTrack/modules/section/${idsection}/semestre/${semestre}`;
+    return new Observable((observer) => {
+      fetch(apiUrl, {
+        method: 'GET',
+        headers: {
+          'Authorization': 'Basic ' + btoa('admin:123'), 
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('HTTP status ' + response.status);
+        }
+        return response.json();
+      })
+      .then(data => {
+        observer.next(data);
+        observer.complete();  // <-- à ajouter
+      })
+      .catch(error => observer.error(error));
+    });
+  }
   
 }

@@ -57,6 +57,7 @@ export class LoginComponent {
         if (response && response.token && response.idRole) {
           localStorage.setItem('token', response.token);
           localStorage.setItem('idRole', response.idRole);
+          localStorage.setItem('idUser', response.idUser);
   
           if (response.idRole === 1) {
             this.router.navigate(['/admin-acceuil']);

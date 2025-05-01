@@ -1,22 +1,20 @@
 <div class="notes-container">
-    <h2 class="title">Suivie des notes</h2>
+    <h2 class="title">Suivie
+       des notes</h2>
     
     <!-- Filtres -->
     <div class="filters">
-      <select [(ngModel)]="selectedSection" class="dropdown"  [disabled]="isProcessing">
+      <select [(ngModel)]="selectedSection" class="dropdown" (change)="onSectionChange($event)" [disabled]="isProcessing">
         <option value="" disabled selected>Section</option>
-        <option *ngFor="let section of sections" [value]="section">{{ section }}</option>
+        <option *ngFor="let section of sections" [value]="section.idSection">{{ section.nomSection }}</option>
       </select>
-      
-     <select [(ngModel)]="selectedNiveau" class="dropdown" [disabled]="isProcessing">
-        <option value="" disabled selected>Niveau</option>
-        <option *ngFor="let niveau of niveaux" [value]="niveau">{{ niveau }}</option>
-      </select>
-  
-      <select [(ngModel)]="selectedSemestre" class="dropdown"   [disabled]="isProcessing">
+      <select [(ngModel)]="selectedSemestre" class="dropdown" (change)="onSemestreChange($event)"   [disabled]="isProcessing">
         <option value="" disabled selected>Semestre</option>
         <option *ngFor="let semestre of semestres" [value]="semestre">{{ semestre }}</option>
       </select>
+
+  
+     
     </div>
   <table class="notes-table">
     <thead>
@@ -25,30 +23,32 @@
       </tr>
     </thead>
     <tbody>
-      <ng-container *ngFor="let ue of ueData">
-        <tr *ngFor="let matiere of ue.matieres; let first = first" 
-            [class.ue-row]="first">
+      <ng-container *ngFor="let module of modules">
+        <tr *ngFor="let matiere of module.matieres; let first = first" [class.ue-row]="first">
           
-          <td *ngIf="first" [attr.rowspan]="ue.matieres.length">{{ue.nom}}</td>
-          <td *ngIf="first" [attr.rowspan]="ue.matieres.length">{{ue.coefficient}}</td>
+          <td *ngIf="first" [attr.rowspan]="module.matieres.length">{{ module.nomModule }}</td>
+          <td *ngIf="first" [attr.rowspan]="module.matieres.length">{{ module.coefModule }}</td>
           
-          <td>{{matiere.nom}}</td>
-          <td>{{matiere.coefficient}}</td>
-          <td>{{matiere.ponderation || '-'}}</td>
-          <td>{{matiere.cc || '-'}}</td>
-          <td>{{matiere.exam || '-'}}</td>
-          <td>{{matiere.moyenne || '-'}}</td>
-          <td>{{matiere.etat || '-'}}</td>
+          <td>{{ matiere.nomMatiere }}</td>
+          <td>{{ matiere.coefMatiere }}</td>
+          <td>{{ matiere.ponderation || '-' }}</td>
+          <td>{{ matiere.cc || '-' }}</td>
+          <td>{{ matiere.exam || '-' }}</td>
+          <td>{{ matiere.moyenne || '-' }}</td>
+          <td></td>
+          <td>{{ matiere.etat || '-' }}</td>
           <td class="action-cell">
-            <button class="download-btn" (click)="handleDownload(matiere)">
+            <button class="download-btn" (click)="handleDownload(matiere.lienCopie)">
               <i class="download-icon">↓</i> Télécharger
             </button>
-            <button class="reclamation-btn" (click)="handleReclamation(matiere)">
+            <button class="reclamation-btn" (click)="handleReclamation(matiere.idMatiere)">
               <i class="reclamation-icon">!</i> Réclamation
             </button>
           </td>
+          
         </tr>
       </ng-container>
+      
     </tbody>
   </table>
 </div>

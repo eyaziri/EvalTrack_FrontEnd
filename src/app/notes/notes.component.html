@@ -3,7 +3,7 @@
   
   <!-- Filtres -->
   <div class="filters">
-    <select [(ngModel)]="selectedSession" class="dropdown" (change)="resetTable()" [disabled]="isProcessing">
+    <select [(ngModel)]="selectedSession" class="dropdown" (change)="onSessionChange($event)" [disabled]="isProcessing">
       <option value="" disabled selected>Session</option>
       <option *ngFor="let session of sessions" [value]="session">{{ session }}</option>
     </select>
