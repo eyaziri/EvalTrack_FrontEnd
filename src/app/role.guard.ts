@@ -18,8 +18,8 @@ export class RoleGuard implements CanActivate {
     const requiredRole = next.data['role']; // Récupère le rôle requis pour accéder à cette route
 
     if (userRole !== requiredRole) {
-      // Si le rôle de l'utilisateur ne correspond pas à celui requis, rediriger vers une autre page
-      this.router.navigate(['/access-denied']); // Exemple de page d'accès interdit
+     
+      this.router.navigate(['/access-denied']); 
       return false;
     }
     return true;

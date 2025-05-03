@@ -17,8 +17,9 @@ export class AuthService {
     localStorage.setItem('role', role); // Simuler un stockage du rôle
   }
   getUserRole(): string {
-    return this.user.role;  // Ici, 'role' provient de l'objet utilisateur
+    return localStorage.getItem('idRole') ?? ''; // retourne '' si null
   }
+  
 
   logout(): void {
     this.currentUserRole = '';

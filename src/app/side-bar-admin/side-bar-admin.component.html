@@ -3,16 +3,18 @@
   <img src="../../assets/logo.png" alt="Logo" class="logo" />
 
   <ul>
-    <!-- Accueil -->
-    <li class="menu-item">
-      <i class="fa-solid fa-house"></i>
-      <a routerLink="/admin-acceuil" routerLinkActive="active">Accueil</a>
-    </li>
+   
 
     <!-- Notes -->
     <li class="menu-item">
       <i class="fa-solid fa-graduation-cap"></i>
       <a  [routerLink]="['/admin/notes']" >Notes</a>
+    </li>
+    
+    <!-- Modifier Notes -->
+    <li class="menu-item">
+      <i class="fa-solid fa-graduation-cap"></i>
+      <a  [routerLink]="['/modifie-note-etudiant']" >Modification d'une note</a>
     </li>
 
     <!-- Liste des étudiants -->

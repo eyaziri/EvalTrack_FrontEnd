@@ -47,12 +47,11 @@ export class LoginComponent {
       email: this.loginForm.get('email')?.value,
       motDePasse: this.loginForm.get('password')?.value
     };
-    console.log(student.email);
-    console.log(student.motDePasse);
+   
   
     this.etudiantService.LoginStudent(student).subscribe({
       next: (response) => {
-        console.log('Réponse reçue :', response);
+      
   
         if (response && response.token && response.idRole) {
           localStorage.setItem('token', response.token);
@@ -60,10 +59,10 @@ export class LoginComponent {
           localStorage.setItem('idUser', response.idUser);
   
           if (response.idRole === 1) {
-            this.router.navigate(['/admin-acceuil']);
+            this.router.navigate(['/admin/notes']);
           } else if (response.idRole === 2) {
           
-            this.router.navigate(['/etudiant-page-accueil']);
+            this.router.navigate(['/etudiant-page-dashboard']);
           } else {
             alert('Rôle utilisateur non reconnu.');
           }

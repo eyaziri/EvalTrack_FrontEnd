@@ -1,0 +1,59 @@
+<form [formGroup]="noteForm" (ngSubmit)="onSubmit()">
+    <!-- Session -->
+    <label>Session :</label>
+    <select formControlName="session">
+      <option value="">-- Sélectionner la session --</option>
+      <option value="principale">Principale</option>
+      <option value="rattrapage">Rattrapage</option>
+    </select>
+  
+    <!-- Section -->
+    <label>Section :</label>
+    <select formControlName="section">
+      <option value="">-- Sélectionner la section --</option>
+      <option value="sectionA">Section A</option>
+      <option value="sectionB">Section B</option>
+      <option value="sectionC">Section C</option>
+    </select>
+  
+    <!-- Semestre -->
+    <label>Semestre :</label>
+    <select formControlName="semestre">
+      <option value="">-- Sélectionner le semestre --</option>
+      <option value="semestre1">Semestre 1</option>
+      <option value="semestre2">Semestre 2</option>
+    </select>
+  
+    <!-- Module -->
+    <label>Module :</label>
+    <select formControlName="module">
+      <option value="">-- Sélectionner le module --</option>
+      <option value="math">Mathématiques</option>
+      <option value="physique">Physique</option>
+      <option value="informatique">Informatique</option>
+    </select>
+  
+    <!-- Matière -->
+    <label>Matière :</label>
+    <select formControlName="matiere">
+      <option value="">-- Sélectionner la matière --</option>
+      <option value="algèbre">Algèbre</option>
+      <option value="analyse">Analyse</option>
+      <option value="programmation">Programmation</option>
+    </select>
+  
+    <!-- Type d'examen -->
+    <label>Type d'examen :</label>
+    <select formControlName="type_exam">
+      <option value="">-- Sélectionner le type d'examen --</option>
+      <option value="ds">DS</option>
+      <option value="examen">Examen</option>
+    </select>
+  
+    <!-- Note -->
+    <label>Note à modifier :</label>
+    <input type="number" formControlName="note" placeholder="Entrez la note">
+  
+    <button type="submit" [disabled]="noteForm.invalid">Ajouter</button>
+  </form>
+  

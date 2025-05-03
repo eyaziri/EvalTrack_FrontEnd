@@ -1,15 +1,30 @@
 <header>
-  <h2 class="Bienvenue">Bienvenue <strong>Oumaima Chely</strong> 👋</h2>
+
   <div class="icons">
-      <i class="bell-icon">🔔</i>
-      <i class="search-icon">🔍</i>
-      <!--img src="../images/icone.png" alt="User" class="user-avatar" (click)="toggleMenu()" /-->
-      <i class="fa-solid fa-user" style="size: 20px;" (click)="toggleMenu()"></i>
+    <div class="search-icon">
+      <i class="fa-solid fa-magnifying-glass"></i>
+     </div>
+      <div class="bell-icon">
+        <i class="fa-solid fa-bell"></i>
+      </div>
+      <div class="user-avatar">
+        <i class="fa-solid fa-user" (click)="toggleMenu()"></i>
+      </div>
   </div>
 </header>
 
 <div class="user-menu" *ngIf="isMenuOpen">
-  <p><i class="user-icon">🧑</i>Ameni zakraoui </p>
-  <p><i class="card-icon">💳</i> 01######</p>
-  <p><i class="code-icon">💻</i> Génie Informatique</p>
+  <ng-container *ngIf="idRole === 1; else etudiantTemplate">
+    <!-- Affichage pour admin -->
+    <p><i class="user-icon">🧑</i>{{ student.nomAdmin }}</p>
+    <p><i class="email-icon">📧</i>{{ student.email }}</p>
+  </ng-container>
+
+  <ng-template #etudiantTemplate>
+    <!-- Affichage pour étudiant -->
+    <p><i class="user-icon">🧑</i>{{ student.nomEtudiant }}</p>
+    <p><i class="card-icon">💳</i>{{ student.cinEtudiant }}</p>
+    <p><i class="code-icon">💻</i>{{ student.nomSection }}</p>
+  </ng-template>
 </div>
+

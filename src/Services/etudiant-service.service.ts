@@ -159,6 +159,52 @@ export class EtudiantServiceService {
       .catch(error => observer.error(error));
     });
   }
+
+  getStudentById(idStudent :number)
+  {
+    const apiUrl = `http://localhost:8080/EvalTrack/etudiant/${idStudent}`;
+  
+    return new Observable<any>((observer) => {
+      fetch(apiUrl, {
+        method: 'GET',
+        headers: {
+          'Authorization': 'Basic ' + btoa('admin:123'),
+          'Content-Type': 'application/json'
+        }
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('HTTP status ' + response.status);
+          }
+          return response.json();
+        })
+        .then(data => observer.next(data))
+        .catch(error => observer.error(error));
+    });
+  }
+
+  getUserByIdAndRole(idStudent :number,idRole:number)
+  {
+    const apiUrl = `http://localhost:8080/EvalTrack/etudiant/${idStudent}/${idRole}`;
+  
+    return new Observable<any>((observer) => {
+      fetch(apiUrl, {
+        method: 'GET',
+        headers: {
+          'Authorization': 'Basic ' + btoa('admin:123'),
+          'Content-Type': 'application/json'
+        }
+      })
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('HTTP status ' + response.status);
+          }
+          return response.json();
+        })
+        .then(data => observer.next(data))
+        .catch(error => observer.error(error));
+    });
+  }
     
   
 
