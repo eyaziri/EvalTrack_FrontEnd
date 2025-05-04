@@ -3,6 +3,7 @@ import { SideBarAdminComponent } from "../side-bar-admin/side-bar-admin.componen
 import { HeaderStandardComponent } from "../header-standard/header-standard.component";
 import { AddModulesComponent } from "../components/add-modules/add-modules.component";
 
+
 @Component({
   selector: 'app-admin-page-ajout-module',
   imports: [SideBarAdminComponent, HeaderStandardComponent, AddModulesComponent],

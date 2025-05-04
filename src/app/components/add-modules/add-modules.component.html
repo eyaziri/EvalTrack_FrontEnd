@@ -19,14 +19,14 @@
     <div class="selection-container">
       <div class="form-group">
         <label class="label">Filière</label>
-        <select class="select" [(ngModel)]="selectedFiliere">
-          <option *ngFor="let filiere of filieres" [value]="filiere">{{ filiere }}</option>
+        <select class="select" [(ngModel)]="selectedFiliere" (change)="onSectionChange($event)">
+          <option *ngFor="let section of sections" [value]="section.idSection">{{ section.nomSection }}</option>
         </select>
       </div>
 
       <div class="form-group">
         <label class="label">Semestre</label>
-        <select class="select" [(ngModel)]="selectedSemestre">
+        <select class="select" [(ngModel)]="selectedSemestre" (change)="onSemestreChange($event)">
           <option *ngFor="let semestre of semestres" [value]="semestre">{{ semestre }}</option>
         </select>
       </div>
@@ -35,9 +35,16 @@
 
   <!-- Vue Ajout -->
   <div *ngIf="currentView === 'add'">
+    <div *ngIf="successMessage" class="success-message">
+      <i class="fas fa-check-circle"></i> {{ successMessage }}
+    </div>
+    
+    <div *ngIf="errorMessage" class="error-message">
+      <i class="fas fa-exclamation-circle"></i> {{ errorMessage }}
+    </div>
     <h3 class="subtitle">Ajouter un Module ou une Matière</h3>
    
-    <div class="options-container">
+    <div *ngIf="!actionType" class="options-container">
       <button class="option-btn" (click)="setActionType('addModule')">
         <i class="fas fa-layer-group"></i>
         <span>Ajouter un nouveau module</span>
@@ -50,8 +57,8 @@
     </div>
 
     <!-- Formulaire d'ajout de module -->
-    <div *ngIf="actionType === 'addModule'" class="form-container">
-      <div class="form-group">
+    <div *ngIf="actionType === 'addModule'" class="form-container">  
+          <div class="form-group">
         <label class="label">Nom du module</label>
         <input class="input" type="text" [(ngModel)]="newModule.nom" placeholder="Ex: Algorithmique">
       </div>
@@ -73,11 +80,15 @@
             <input class="input" type="number" [(ngModel)]="matiere.coefficient" min="1">
           </div>
           <div class="form-group">
-            <label class="label">Heures</label>
-            <input class="input" type="number" [(ngModel)]="matiere.heures" min="1">
+            <label class="label">Description</label>
+            <input class="input" type="text" [(ngModel)]="matiere.description" >
           </div>
         </div>
-        z
+        <div class="form-group">
+          <label class="label">Pondération</label>
+            <input class="input" type="text" [(ngModel)]="matiere.ponderation" >
+        </div>
+       
       </div>
 
       <div class="action-buttons">
@@ -94,8 +105,8 @@
     <div *ngIf="actionType === 'addMatiere'" class="form-container">
       <div class="form-group">
         <label class="label">Module cible</label>
-        <select class="select" [(ngModel)]="selectedModuleForMatiere">
-          <option *ngFor="let module of existingModules" [value]="module.id">{{module.nom}}</option>
+        <select class="select" [(ngModel)]="selectedModuleForMatiere" (change)="onModuleChange($event)" >
+          <option *ngFor="let module of modules" [value]="module.idModule">{{module.nomModule}}</option>
         </select>
       </div>
 
@@ -110,17 +121,13 @@
             <input class="input" type="number" [(ngModel)]="newMatiere.coefficient" min="1">
           </div>
           <div class="form-group">
-            <label class="label">Heures</label>
-            <input class="input" type="number" [(ngModel)]="newMatiere.heures" min="1">
+            <label class="label">Description</label>
+            <input class="input" type="text" [(ngModel)]="newMatiere.description" >
           </div>
         </div>
         <div class="form-group">
-          <label class="label">Mode d'évaluation</label>
-          <select class="select" [(ngModel)]="newMatiere.evaluation">
-            <option value="Examen">Examen</option>
-            <option value="Contrôle continu">Contrôle continu</option>
-            <option value="Projet">Projet</option>
-          </select>
+          <label class="label">Pondération</label>
+          <input class="input" type="text" [(ngModel)]="newMatiere.ponderation" >
         </div>
       </div>
 
@@ -128,7 +135,7 @@
         <button class="btn btn-cancel" (click)="resetAction()">
           <i class="fas fa-times"></i> Annuler
         </button>
-        <button class="btn btn-confirm" (click)="addNewMatiere()">
+        <button class="btn btn-confirm" (click)="AddMatiereToModule()">
           <i class="fas fa-check"></i> Confirmer
         </button>
       </div>
@@ -138,7 +145,13 @@
   <!-- Vue Modification -->
   <div *ngIf="currentView === 'edit'">
     <h3 class="subtitle">Modifier un Module ou une Matière</h3>
-   
+    <div *ngIf="successMessage" class="success-message">
+      <i class="fas fa-check-circle"></i> {{ successMessage }}
+    </div>
+    
+    <div *ngIf="errorMessage" class="error-message">
+      <i class="fas fa-exclamation-circle"></i> {{ errorMessage }}
+    </div>
     <div class="options-container">
       <button class="option-btn" (click)="setActionType('editModule')">
         <i class="fas fa-layer-group"></i>
@@ -155,17 +168,23 @@
 <div *ngIf="actionType === 'editModule'" class="form-container">
   <div class="form-group">
     <label class="label">Module à modifier</label>
-    <select class="select" [(ngModel)]="selectedModuleToEdit" (change)="loadModuleToEdit()" name="moduleSelect">
+    <select class="select" [(ngModel)]="selectedModuleToEdit" 
+            (change)="loadModuleToEdit()" name="moduleSelect">
       <option [value]="null">-- Sélectionnez un module --</option>
-      <option *ngFor="let module of existingModules" [value]="module.id">{{module.nom}}</option>
+      <option *ngFor="let module of existingModules" [ngValue]="module.idModule">
+        {{ module.nomModule }}
+      </option>
     </select>
   </div>
 
-  <div *ngIf="selectedModuleToEdit" class="form-group">
+  <!-- Champ de modification (apparaît seulement si module sélectionné) -->
+  <div *ngIf="moduleToEdit" class="form-group">
     <label class="label">Nouveau nom du module</label>
-    <input class="input" type="text" [(ngModel)]="moduleToEdit.nom"
-           (input)="onModuleNameChange()" name="moduleName"
-           placeholder="Entrez le nouveau nom">
+    <input class="input" type="text" 
+           [(ngModel)]="moduleToEdit.nomModule"
+           name="moduleName"
+           placeholder="Entrez le nouveau nom"
+           required>
   </div>
 
   <div class="action-buttons">
@@ -173,7 +192,7 @@
       <i class="fas fa-times"></i> Annuler
     </button>
     <button class="btn btn-confirm" (click)="saveModuleChanges()"
-            [disabled]="!isModuleFormValid()">
+            [disabled]="!moduleToEdit?.nomModule?.trim()">
       <i class="fas fa-save"></i> Enregistrer
     </button>
   </div>
@@ -181,34 +200,37 @@
 
 
     <!-- Formulaire de modification de matière -->
-<div *ngIf="actionType === 'editMatiere'" class="form-container">
-  <!-- Sélection du module -->
-  <div class="form-group">
-    <label class="label">Module</label>
-    <select class="select" [(ngModel)]="selectedModuleForMatiereEdit" (change)="loadMatieresForEdit()">
-      <option [value]="null">-- Sélectionnez un module --</option>
-      <option *ngFor="let module of existingModules" [value]="module.id">
-        {{module.nom}} ({{module.matieres.length}} matières)
-      </option>
-    </select>
-  </div>
-  <!-- Afficher pour debug -->
-<div *ngIf="selectedModuleForMatiereEdit && !matiereToEdit">
-  <p>Debug: Module sélectionné mais matiereToEdit est null</p>
-  <p>selectedMatiereToEdit: {{selectedMatiereToEdit}}</p>
-</div>
+    <div *ngIf="actionType === 'editMatiere'" class="form-container">
+      <!-- Sélection du module -->
+      <div class="form-group">
+        <label class="label">Module</label>
+        <select class="select" [(ngModel)]="selectedModuleForMatiereEdit" 
+        (change)="loadMatieresForEdit()" name="moduleSelect">
+          <option [value]="null">-- Sélectionnez un module --</option>
+          <option *ngFor="let module of existingModules" [ngValue]="module.idModule">
+            {{ module.nomModule }}
+          </option>
+        </select>
+      </div>
+    
+      <!-- Sélection de la matière -->
+      <div class="form-group" *ngIf="selectedModuleForMatiereEdit">
+        <label class="label">Matière à modifier</label>
+        <select class="select" [(ngModel)]="selectedMatiereToEdit" 
+        (change)="loadMatiereToEdit()">
+          <option [ngValue]="null">-- Sélectionnez une matière --</option>
+          <option *ngFor="let matiere of matieresForEdit"
+                  [ngValue]="matiere.matiereId">
+            {{matiere.nom}} (Coef: {{matiere.coefficient}})
+          </option>
+        </select>
+        <small class="debug-info">
+          Nombre de matières: {{matieresForEdit.length}}
+        </small>
+      </div>
+    
+    
 
-  <!-- Sélection de la matière (apparaît seulement si module sélectionné) -->
-  <div class="form-group" *ngIf="selectedModuleForMatiereEdit">
-    <label class="label">Matière à modifier</label>
-    <select class="select" [(ngModel)]="selectedMatiereToEdit" (change)="loadMatiereToEdit()" name="matiereSelect">
-      <option [ngValue]="null">-- Sélectionnez une matière --</option>
-      <option *ngFor="let matiere of getMatieresForModule(selectedModuleForMatiereEdit)"
-              [ngValue]="matiere.id">
-        {{matiere.nom}} (Coef: {{matiere.coefficient}}, Heures: {{matiere.heures}})
-      </option>
-    </select>
-  </div>
 
   <!-- Formulaire d'édition (apparaît seulement si matière sélectionnée) -->
   <div *ngIf="matiereToEdit" class="matiere-form">
@@ -222,17 +244,14 @@
         <input class="input" type="number" [(ngModel)]="matiereToEdit.coefficient" min="1">
       </div>
       <div class="form-group">
-        <label class="label">Heures</label>
-        <input class="input" type="number" [(ngModel)]="matiereToEdit.heures" min="1">
+        <label class="label">Description</label>
+        <input class="input" type="text" [(ngModel)]="matiereToEdit.description">
       </div>
     </div>
     <div class="form-group">
-      <label class="label">Mode d'évaluation</label>
-      <select class="select" [(ngModel)]="matiereToEdit.evaluation">
-        <option value="Examen">Examen</option>
-        <option value="Contrôle continu">Contrôle continu</option>
-        <option value="Projet">Projet</option>
-      </select>
+      <label class="label">Pondération</label>
+      <input class="input" type="text" [(ngModel)]="matiereToEdit.ponderation">
+
     </div>
   </div>
  
@@ -252,8 +271,15 @@
 
   <!-- Vue Suppression -->
   <div *ngIf="currentView === 'delete'">
+    
     <h3 class="subtitle">Supprimer un Module ou une Matière</h3>
-   
+    <div *ngIf="successMessage" class="success-message">
+      <i class="fas fa-check-circle"></i> {{ successMessage }}
+    </div>
+    
+    <div *ngIf="errorMessage" class="error-message">
+      <i class="fas fa-exclamation-circle"></i> {{ errorMessage }}
+    </div>
     <div class="options-container">
       <button class="option-btn" (click)="setActionType('deleteModule')">
         <i class="fas fa-layer-group"></i>
@@ -272,22 +298,22 @@
         <label class="label">Module à supprimer</label>
         <select class="select" [(ngModel)]="selectedModuleToDelete" (change)="loadModuleDetails()" name="moduleSelect">
           <option [ngValue]="null">-- Sélectionnez un module --</option>
-          <option *ngFor="let module of existingModules" [ngValue]="module.id">
-            {{module.nom}} ({{module.matieres.length}} matières)
+          <option *ngFor="let module of existingModules" [ngValue]="module.idModule">
+            {{ module.nomModule }}
           </option>
         </select>
       </div>
    
       <div *ngIf="moduleDetails" class="preview-section">
         <h4>Module à supprimer :</h4>
-        <p><strong>{{ moduleDetails.nom }}</strong></p>
-        <p>Contient {{ moduleDetails.matieres.length }} matière(s)</p>
+        <p><strong>{{ moduleDetails.nomModule }}</strong></p>
+        <p>Contient {{ moduleDetails.listeMatieres.length }} matière(s)</p>
        
-        <div class="matieres-list" *ngIf="moduleDetails.matieres.length > 0">
+        <div class="matieres-list" *ngIf="moduleDetails.listeMatieres.length > 0">
           <h5>Matières incluses :</h5>
           <ul>
-            <li *ngFor="let matiere of moduleDetails.matieres">
-              {{matiere.nom}} (Coef: {{matiere.coefficient}}, Heures: {{matiere.heures}})
+            <li *ngFor="let matiere of moduleDetails.listeMatieres">
+              {{matiere.nom}} (Coef: {{matiere.coefficient}}, Heures: {{matiere.description}})
             </li>
           </ul>
         </div>
@@ -315,8 +341,8 @@
         <select class="select" [(ngModel)]="selectedModuleForMatiereDelete"
                 (change)="loadMatieresForDelete()" name="moduleSelect">
           <option [ngValue]="null">-- Sélectionnez un module --</option>
-          <option *ngFor="let module of existingModules" [ngValue]="module.id">
-            {{module.nom}} ({{module.matieres.length}} matières)
+          <option *ngFor="let module of existingModules" [ngValue]="module.idModule">
+            {{ module.nomModule }}
           </option>
         </select>
       </div>
@@ -327,10 +353,13 @@
                 (change)="loadMatiereDetails()" name="matiereSelect">
           <option [ngValue]="null">-- Sélectionnez une matière --</option>
           <option *ngFor="let matiere of getMatieresForDelete(selectedModuleForMatiereDelete)"
-                  [ngValue]="matiere.id">
-            {{matiere.nom}} (Coef: {{matiere.coefficient}}, Heures: {{matiere.heures}})
+                  [ngValue]="matiere.matiereId">
+            {{matiere.nom}} (Coef: {{matiere.coefficient}})
           </option>
         </select>
+        <div *ngIf="getMatieresForDelete(selectedModuleForMatiereDelete).length === 0" class="no-data">
+          Aucune matière disponible pour ce module
+        </div>
       </div>
      
 
@@ -339,7 +368,7 @@
         <p><strong>{{ getMatiereName(selectedMatiereToDelete) }}</strong></p>
         <p></p>
         <p>Coefficient : {{ getMatiereCoefficient(selectedMatiereToDelete) }}</p>
-        <p>Heures : {{ getMatiereHeures(selectedMatiereToDelete) }}</p>
+        <p>Heures : {{ getMatiereDescription(selectedMatiereToDelete) }}</p>
       </div>
 
       <div *ngIf="selectedMatiereToDelete" class="warning-message">
