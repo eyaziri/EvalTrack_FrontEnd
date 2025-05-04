@@ -270,4 +270,31 @@
   .action-buttons {
     grid-template-columns: 1fr;
   }
+
+ 
+}
+
+.success-message {
+  color: green;
+  background-color: #e6ffe6;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 10px 0;
+  border: 1px solid #a3e8a3;
+}
+
+.error-message {
+  color: #d8000c;
+  background-color: #ffd2d2;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 10px 0;
+  border: 1px solid #ffa3a3;
+}
+
+.no-data {
+  color: #666;
+  font-style: italic;
+  margin-top: 5px;
+  font-size: 0.9em;
 }

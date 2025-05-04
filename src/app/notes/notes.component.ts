@@ -6,7 +6,7 @@ import * as pdfjsLib from 'pdfjs-dist';
 import type { TextItem } from 'pdfjs-dist/types/src/display/api';
 import { SectionServiceService } from '../../Services/section-service.service';
 import { ModuleService } from '../../Services/module.service';
-import { MatiéreService } from '../../Services/matiére.service';
+import { MatiereService } from '../../Services/matiere.service';
 import { ExamenService } from '../../Services/examen.service';
 
 @Component({
@@ -66,7 +66,7 @@ export class NotesComponent {
   constructor(
     private sectionS: SectionServiceService,
     private module: ModuleService,
-    private matiereservice: MatiéreService,
+    private matiereservice: MatiereService,
     private examService: ExamenService
   ) {
     pdfjsLib.GlobalWorkerOptions.workerSrc = `${this.PDFJS_CDN_URL}/pdf.worker.min.js`;
