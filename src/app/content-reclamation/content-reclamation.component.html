@@ -1,6 +1,5 @@
+<h2 class="title">Soumettre une reclamation</h2>
 <div class="reclamation-container">
-  <h1>Soumettre une réclamation</h1>
-
   <form class="reclamation-form" #reclamationForm="ngForm" (ngSubmit)="onSubmit(reclamationForm)">
     <div class="form-group">
       <label for="type-reclamation">Type de réclamation :</label>
@@ -14,10 +13,7 @@
       </select>
     </div>
 
-    <div class="form-group">
-      <label for="email">Email institutionnel :</label>
-      <input type="email" id="email" name="emailEtudiant" required [(ngModel)]="reclamation.emailEtudiant">
-    </div>
+    
 
     <div class="form-group">
       <label for="matiere">Matière concernée :</label>
@@ -34,7 +30,7 @@
 
   <div class="previous-reclamations" *ngIf="reclamationsPrecedentes.length > 0">
     <h2>Réclamations précédentes :</h2>
-    <div *ngFor="let reclamation of reclamationsPrecedentes" class="reclamation-card">
+    <div  class="reclamation-card"  *ngFor="let reclamation of reclamationsPrecedentes">
       <div class="reclamation-header">
         <h3>{{ reclamation.type }}</h3>
         <p><strong>Matière concernée:</strong> {{ reclamation.matiereConcerne }}</p>

@@ -22,10 +22,10 @@ export class ContentReclamationComponent implements OnInit {
     matiereConcerne: '',
     emailEtudiant: '',
     etudiant: {
-      idEtudinat: 136,
+      idEtudinat: 0,
     },
     administrateur: {
-      id: 4,
+      id: 1,
     },
   };
 
@@ -37,6 +37,7 @@ export class ContentReclamationComponent implements OnInit {
   currentStep: number = 0;
   reclamationEnvoyee: boolean = false;
   reclamationsPrecedentes: Reclamation[] = [];
+  
 
   constructor(private reclamationService: ReclamationService) {}
 
@@ -45,8 +46,13 @@ export class ContentReclamationComponent implements OnInit {
   }
 
   fetchReclamations(): void {
+    const idUserString = localStorage.getItem('idUser');
+    if (idUserString !== null )
+    {
+     const idUser = parseInt(idUserString);
+     this.reclamation.etudiant.idEtudinat=idUser;
     this.reclamationService
-      .getReclamationsByEtudiant(this.reclamation.etudiant.idEtudinat)
+      .getReclamationsByEtudiant(idUser)
       .subscribe({
         next: (reclamations) => {
           this.reclamationsPrecedentes = reclamations;
@@ -67,6 +73,7 @@ export class ContentReclamationComponent implements OnInit {
           console.error('Erreur lors de la récupération des réclamations', err);
         },
       });
+    }
   }
   
   getStepForReclamation(reclamation: Reclamation): number {
@@ -82,16 +89,30 @@ export class ContentReclamationComponent implements OnInit {
   }
   
   onSubmit(form: NgForm): void {
+     const idUserString = localStorage.getItem('idUser');
+     if (idUserString !== null )
+     {
+      const idUser = parseInt(idUserString);
+      this.reclamation.etudiant.idEtudinat=idUser;
     if (form.valid) {
+   
       this.reclamationService.addReclamation(this.reclamation).subscribe({
         next: (response) => {
-          console.log('Réclamation envoyée avec succès', response);
+        
           this.reclamationEnvoyee = true;
           this.fetchReclamationWorkflow();
           form.resetForm();
         },
+        error: (err) => {
+          console.error('Erreur lors de l\'envoi de la réclamation :', err);
+        },
+        complete: () => {
+          console.log('Requête terminée.');
+        }
       });
+      
     }
+  }
   }
 
   fetchReclamationWorkflow() {
@@ -99,11 +120,13 @@ export class ContentReclamationComponent implements OnInit {
       .getReclamationsByEtudiant(this.reclamation.etudiant.idEtudinat)
       .subscribe({
         next: (reclamations) => {
+       
+           this.reclamationsPrecedentes=reclamations;
           if (reclamations && reclamations.length > 0) {
-            const reclamation = reclamations[0]; // Prendre la première réclamation de l'étudiant
-            if (reclamation.statut === 'ACCEPTEE') {
+             this.reclamation = reclamations[0]; // Prendre la première réclamation de l'étudiant
+            if (this.reclamation.statut === 'ACCEPTEE') {
               this.currentStep = 1; // La réclamation est acceptée, donc on va jusqu'à la 3ème étape
-            } else if (reclamation.statut === 'TRAITEE') {
+            } else if (this.reclamation.statut === 'TRAITEE') {
               this.currentStep = 2; // La réclamation est traitée, donc on va jusqu'à la 4ème étape
             } else {
               this.currentStep = 0; // Sinon, on reste à la 2ème étape (en cours)

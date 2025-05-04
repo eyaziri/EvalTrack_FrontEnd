@@ -43,7 +43,6 @@ export class ReclamationService {
         .catch(error => observer.error(error));
     });
   }
-
   addReclamation(reclamation: Reclamation): Observable<Reclamation> {
     return new Observable((observer) => {
       fetch(`${this.apiUrl}`, {
@@ -54,9 +53,22 @@ export class ReclamationService {
         },
         body: JSON.stringify(reclamation)
       })
-      
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Erreur HTTP ' + response.status);
+          }
+          return response.json();
+        })
+        .then(data => {
+          observer.next(data);
+          observer.complete();
+        })
+        .catch(error => {
+          observer.error(error);
+        });
     });
   }
+  
 
   getReclamationById(idReclamation: number): Observable<any[]> {
     return new Observable((observer) => {

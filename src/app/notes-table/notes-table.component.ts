@@ -36,9 +36,9 @@ export class NotesTableComponent {
           if (this.student.niveauEtudiant == 1) {
             this.filteredSemestres = ['Semestre 1', 'Semestre 2'];
           } else if (this.student.niveauEtudiant == 2) {
-            this.filteredSemestres = ['Semestre 3', 'Semestre 4'];
+            this.filteredSemestres = ['Semestre 1', 'Semestre 2','Semestre 3', 'Semestre 4'];
           } else if (this.student.niveauEtudiant == 3) {
-            this.filteredSemestres = ['Semestre 5'];
+            this.filteredSemestres = ['Semestre 1', 'Semestre 2','Semestre 3', 'Semestre 4','Semestre 5'];
           } else {
             this.filteredSemestres = []; // Aucun semestre si niveau inconnu
           }

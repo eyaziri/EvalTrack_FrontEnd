@@ -10,11 +10,6 @@
   align-items: center;
   margin-bottom: 20px;
 
-  h2 {
-    font-size: 24px;
-    font-weight: bold;
-    color: darkcyan;
-  }
 }
 
 table {
@@ -152,4 +147,12 @@ table {
 .error-message {
   background-color: red;
   color: white;
+}
+.title {
+  color: #2c3e50;
+  margin-bottom: 25px;
+  font-size: 24px;
+  font-weight: 600;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 10px;
 }
