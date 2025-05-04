@@ -1,35 +1,67 @@
 <div class="reclamation-container">
-  <h1>Rédiger votre réclamation :</h1>
-  
-  <textarea class="reclamation-text" placeholder="Écrivez votre réclamation ici..."></textarea>
-  
-  <button class="send-button">Envoyer</button>
+  <h1>Soumettre une réclamation</h1>
 
-  <div class="workflow-section">
-    <h2>Réclamation workflow :</h2>
-    
-    <div class="steps-container">
-      <div class="step">
-        <div class="step-number active">01</div>
-        <div class="step-content">Réclamation envoyée</div>
-        <div class="connector"></div>
+  <form class="reclamation-form" #reclamationForm="ngForm" (ngSubmit)="onSubmit(reclamationForm)">
+    <div class="form-group">
+      <label for="type-reclamation">Type de réclamation :</label>
+      <select id="type-reclamation" name="type" required [(ngModel)]="reclamation.type">
+        <option value="ERREUR_NOTE_DS">Erreur dans la note de DS</option>
+        <option value="ERREUR_NOTE_EXAMEN">Erreur dans la note d'examen</option>
+        <option value="NOTE_NON_AFFICHÉE">Note non affichée</option>
+        <option value="DEMANDE_DOUBLE_CORRECTION_DS">Demande de double correction DS</option>
+        <option value="DEMANDE_DOUBLE_CORRECTION_EXAMEN">Demande de double correction Examen</option>
+        <option value="AUTRE">Autre (à signaler par email)</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email institutionnel :</label>
+      <input type="email" id="email" name="emailEtudiant" required [(ngModel)]="reclamation.emailEtudiant">
+    </div>
+
+    <div class="form-group">
+      <label for="matiere">Matière concernée :</label>
+      <input type="text" id="matiere" name="matiereConcerne" required [(ngModel)]="reclamation.matiereConcerne">
+    </div>
+
+    <div class="form-group">
+      <label for="enseignant">Nom de l'enseignant :</label>
+      <input type="text" id="enseignant" name="nomProf" required [(ngModel)]="reclamation.nomProf">
+    </div>
+
+    <button type="submit" class="send-button" [disabled]="!reclamationForm.valid">Envoyer</button>
+  </form>
+
+  <div class="previous-reclamations" *ngIf="reclamationsPrecedentes.length > 0">
+    <h2>Réclamations précédentes :</h2>
+    <div *ngFor="let reclamation of reclamationsPrecedentes" class="reclamation-card">
+      <div class="reclamation-header">
+        <h3>{{ reclamation.type }}</h3>
+        <p><strong>Matière concernée:</strong> {{ reclamation.matiereConcerne }}</p>
+        <p><strong>Date de création:</strong> {{ reclamation.dateCreation }}</p>
       </div>
       
-      <div class="step">
-        <div class="step-number">02</div>
-        <div class="step-content">Reception de Réclamation</div>
-        <div class="connector"></div>
+      <div class="reclamation-info">
+        <p><strong>Le nom d'enseignant:</strong> {{ reclamation.nomProf }}</p>
       </div>
-      
-      <div class="step">
-        <div class="step-number">03</div>
-        <div class="step-content">Vérification de Note</div>
-        <div class="connector"></div>
-      </div>
-      
-      <div class="step">
-        <div class="step-number">04</div>
-        <div class="step-content">Terminé</div>
+
+      <div class="workflow-section">
+        <h4>Suivi du workflow :</h4>
+        <div class="steps-container">
+          <div *ngFor="let step of workflow; let i = index" class="step">
+            <div 
+              class="step-number" 
+              [ngClass]="{ 
+                'active': i <= getStepForReclamation(reclamation), 
+                'workflow-accepted': reclamation.statut === 'ACCEPTEE' && i === 2,
+                'workflow-processed': reclamation.statut === 'TRAITEE' && i === 3
+              }">
+              {{ i + 1 }}
+            </div>
+            <div class="step-content">{{ step }}</div>
+            <div class="connector" *ngIf="i < workflow.length - 1"></div>
+          </div>          
+        </div>
       </div>
     </div>
   </div>
