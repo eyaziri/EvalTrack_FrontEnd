@@ -48,4 +48,24 @@ export class ExamenService {
       .catch(error => observer.error(error));
     });
   }
+  updateNoteByStudent(cinStudent:number,idMatiere :number,typeExam:String,note:number,session:String): Observable<any> {
+    return new Observable((observer) => {
+      fetch(`http://localhost:8080/EvalTrack/examen/update-note/${cinStudent}/${idMatiere}/${typeExam}/${note}/${session}`, {
+        method: 'PUT',
+        headers: {
+          'Authorization': 'Basic ' + btoa('admin:123'),
+          'Content-Type': 'application/json'
+        },
+        
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('HTTP status ' + response.status);
+        }
+        return response.json();
+      })
+      .then(data => observer.next(data))
+      .catch(error => observer.error(error));
+    });
+  }
 }
