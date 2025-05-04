@@ -5,11 +5,12 @@ import { SectionServiceService } from '../../Services/section-service.service';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ModuleService } from '../../Services/module.service';
-import { MatiéreService } from '../../Services/matiére.service';
+import { MatiereService } from '../../Services/matiere.service';
 import { ExamenService } from '../../Services/examen.service';
 
 @Component({
   selector: 'app-formulaire-note',
+  standalone: true,
   imports: [ReactiveFormsModule ,CommonModule, FormsModule],
   templateUrl: './formulaire-note.component.html',
   styleUrl: './formulaire-note.component.scss'
@@ -42,7 +43,7 @@ export class FormulaireNoteComponent {
   typeExam='';
   session=''
 
-  constructor(private fb: FormBuilder,private sectionS :SectionServiceService,private module :ModuleService, private matiereService:MatiéreService ,private examenService:ExamenService)
+  constructor(private fb: FormBuilder,private sectionS :SectionServiceService,private module :ModuleService, private matiereService:MatiereService ,private examenService:ExamenService)
   {
 
   }

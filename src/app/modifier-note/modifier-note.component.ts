@@ -5,7 +5,8 @@ import { FormulaireNoteComponent } from '../formulaire-note/formulaire-note.comp
 
 @Component({
   selector: 'app-modifier-note',
-  imports: [SideBarAdminComponent,HeaderComponent,FormulaireNoteComponent],
+  standalone: true,
+  imports: [SideBarAdminComponent,HeaderComponent,FormulaireNoteComponent,],
   templateUrl: './modifier-note.component.html',
   styleUrl: './modifier-note.component.scss'
 })
