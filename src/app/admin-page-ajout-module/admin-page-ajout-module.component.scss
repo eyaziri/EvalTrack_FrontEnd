@@ -1,21 +1,25 @@
 
 .dashboard-container {
   display: flex;
-  min-height: 100vh; // Permet l'expansion dynamique si le contenu est plus grand
-  background-color: #F9F7F7;
-  align-items: stretch; // Assure que la sidebar prend toute la hauteur du contenu
+  height: 100vh;
+  background-color:white;
+  border-radius: 10px;
+}
+
+app-side-bar-admin {
+  width: 250px; /* Ou une largeur relative comme 20% */
+  height: 100vh; /* Prend la hauteur de la page */
+  background-color: #f4f4f4; /* Exemple de couleur de fond */
+  /* Ajoute tout autre style spécifique pour la sidebar */
 }
 
 .main-content {
-  flex: 1;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
+flex: 1; /* Cela permet à main-content de prendre le reste de l'espace */
+padding: 20px;
+overflow-y: auto; /* Assure que le contenu de la main-content peut défiler si nécessaire */
 }
-
-
-app-side-bar-admin {
-  flex-shrink: 0; // Empêche la réduction de la sidebar
-  height: auto; // Permet à la sidebar de s'étendre
-  min-height: 100vh; // Assure un minimum de hauteur
+.cards {
+  display: flex;
+  gap: 20px;
+  margin-top: 30px;
 }

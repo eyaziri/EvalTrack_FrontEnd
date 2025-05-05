@@ -92,12 +92,21 @@
 
 .form-group {
   margin-bottom: 1.2rem;
-  width: 500px;
+  max-width: 500px;
+  margin-left: 10px;
+  align-items: center;
+}
+
+.form-grouppp {
+  margin-bottom: 1.2rem;
+  max-width: 700px;
+  margin-left: 10px;
   align-items: center;
 }
 
 .form-row {
   display: grid;
+  max-width: 400px;
   grid-template-columns: 1fr 1fr;
   gap: 1rem;
 }
@@ -106,6 +115,7 @@
   display: block;
   font-size: 0.95rem;
   font-weight: 500;
+  grid-template-columns: 1fr;
   margin-bottom: 0.5rem;
   color: #495057;
 }
