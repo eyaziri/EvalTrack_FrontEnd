@@ -104,11 +104,12 @@ export class NotesTableComponent {
       const semestre = parseInt(lastChar);
 
       this.moduleService
-        .getModuleMatiere(this.student.idSection, semestre)
+        .getMatieres(this.student.idSection, semestre)
         .subscribe({
           next: (data) => {
             // Vérifie que data est un tableau avant d'utiliser .map()
             if (Array.isArray(data)) {
+              console.log(data);
               this.modules = data.map((item) => ({
                 idModule: item.module.idModule,
                 nomModule: item.module.nomModule,

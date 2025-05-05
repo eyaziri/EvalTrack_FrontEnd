@@ -121,7 +121,29 @@ export class ModuleService {
   }
   
 
-  
+  getMatieres(idsection: number,semestre:number): Observable<any[]> {
+    const apiUrl = `http://localhost:8080/EvalTrack/modules/matieres/${idsection}/${semestre}`;
+    return new Observable((observer) => {
+      fetch(apiUrl, {
+        method: 'GET',
+        headers: {
+          'Authorization': 'Basic ' + btoa('admin:123'), 
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('HTTP status ' + response.status);
+        }
+        return response.json();
+      })
+      .then(data => {
+        observer.next(data);
+        observer.complete();  // <-- à ajouter
+      })
+      .catch(error => observer.error(error));
+    });
+  }
 
   createModule(module: Omit<Module, 'idModule'>): Observable<Module> {
     const apiUrl = 'http://localhost:8080/EvalTrack/modules';  // L'URL de l'API pour créer un module
