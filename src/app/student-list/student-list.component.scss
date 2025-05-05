@@ -2,20 +2,88 @@
   padding: 20px;
   background: white;
   border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
-.header {
+.title {
+  color: #2c3e50;
+  margin-bottom: 25px;
+  font-size: 24px;
+  font-weight: 600;
+  border-bottom: 2px solid #3498db;
+  padding-bottom: 10px;
+}
+
+.choix {
+  margin: 20px 0;
+  font-size: 16px;
+
+  label {
+    margin-right: 20px;
+    cursor: pointer;
+  }
+}
+
+.select-container {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   margin-bottom: 20px;
+}
 
+.dropdown {
+  background-color: #f9f9f9;
+  border: 2px solid #398F96;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 14px;
+  color: #333;
+  width: 30%; /* Réduit la largeur pour un alignement plus égal */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-left: 10px; /* Ajout du margin-left pour espacer les éléments */
+}
+
+button,
+.validate-button,
+.add-button {
+  padding: 12px;
+  background: linear-gradient(to right, #398F96, #5AB8AA);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background 0.3s ease;
+  margin-left: 10px; /* Ajout du margin-left pour le bouton */
+}
+
+button:hover,
+.validate-button:hover,
+.add-button:hover {
+  background: linear-gradient(to right, #5AB8AA, #398F96);
+}
+
+.validate-button {
+  width: 30%;
+  font-size: 16px;
+}
+
+.add-button {
+  display: block;
+  margin-left: auto;
+  margin-right: 0;
+}
+
+.file-input {
+  margin-top: 20px;
+  font-size: 14px;
 }
 
 table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 10px;
+  margin-top: 20px;
 
   th, td {
     padding: 10px;
@@ -28,131 +96,46 @@ table {
   }
 }
 
-.delete-btn {
-  background-color: #ff4d4f;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.delete-btn:hover {
-  background-color: #ff1a1f;
-}
-
-.dropdown {
-  background-color: #f9f9f9;
-  border: 2px solid darkcyan;
-  border-radius: 5px;
+/* Style pour les messages */
+.message {
   padding: 10px;
-  font-size: 14px;
-  color: #333;
-  width: 130px;
-  margin: 15px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.validate-button {
-  background-color: darkcyan;
-  color: white;
-  border: none;
-  font-size: 16px;
-  padding: 10px 15px;
-  border-radius: 5px;
-  margin: 15px;
-  cursor: pointer;
-}
-
-.validate-button:hover {
-  background-color: darkgreen;
-}
-
-.choix {
-  margin: 15px;
-}
-
-.file-input {
-  text-decoration: none;
-}
-
-.add-button {
-  background-color: darkcyan;
-  color: white;
-  border: none;
-  font-size: 16px;
-  padding: 10px 15px;
   border-radius: 5px;
   margin-top: 15px;
-  cursor: pointer;
-  display: block;  // Utilisation de display block pour centrer le bouton
-  margin-left: 1100px;
-  margin-right: auto;
+  text-align: center;
+  font-weight: bold;
+  font-size: 15px;
 }
 
-// Ajouter une réactivité pour les petits écrans
+.success-message {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.error-message {
+  background-color: #f44336;
+  color: white;
+}
+
+/* Responsive */
 @media (max-width: 768px) {
   .student-list-container {
     padding: 10px;
   }
 
-  .header {
-    flex-direction: column;
-    align-items: flex-start;
+  .dropdown {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .validate-button {
+    width: 100%;
   }
 
   .add-button {
-    margin-left: 0;
-  }
-
-  .dropdown {
-    width: 100%;
-    margin: 10px 0;
+    margin: 20px auto 0 auto;
   }
 
   table {
     font-size: 12px;
   }
-}
-/* Add this in your component's CSS (or global styles) */
-.popup {
-  position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 15px;
-  border-radius: 5px;
-  font-size: 16px;
-  color: white;
-  width: 300px;
-  text-align: center;
-  z-index: 9999;
-  display: none;
-}
-
-/* Style pour les messages */
-.message {
-  padding: 10px;
-  border-radius: 5px;
-  margin-top: 10px;
-  text-align: center;
-}
-
-.success-message {
-  background-color: green;
-  color: white;
-}
-
-.error-message {
-  background-color: red;
-  color: white;
-}
-.title {
-  color: #2c3e50;
-  margin-bottom: 25px;
-  font-size: 24px;
-  font-weight: 600;
-  border-bottom: 2px solid #3498db;
-  padding-bottom: 10px;
 }

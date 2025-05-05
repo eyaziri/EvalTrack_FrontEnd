@@ -1,21 +1,7 @@
-<div class="container">
-  <h2 class="title">Gestion des Modules</h2>
-
-  <!-- Vue principale -->
-  <div *ngIf="currentView === 'main'">
-    <div class="action-buttons">
-      <button class="btn btn-add" (click)="switchView('add')">
-        <i class="fas fa-plus"></i> Ajouter
-      </button>
-      <button class="btn btn-edit" (click)="switchView('edit')">
-        <i class="fas fa-edit"></i> Modifier
-      </button>
-      <button class="btn btn-delete" (click)="switchView('delete')">
-        <i class="fas fa-trash"></i> Supprimer
-      </button>
-    </div>
-
-    <!-- Sélection de la filière et semestre -->
+  <div class="container">
+    <h2 class="title">Gestion des Modules</h2>
+  
+    <!-- Sélection de la filière et semestre (toujours visible sous le titre) -->
     <div class="selection-container">
       <div class="form-group">
         <label class="label">Filière</label>
@@ -23,7 +9,7 @@
           <option *ngFor="let section of sections" [value]="section.idSection">{{ section.nomSection }}</option>
         </select>
       </div>
-
+  
       <div class="form-group">
         <label class="label">Semestre</label>
         <select class="select" [(ngModel)]="selectedSemestre" (change)="onSemestreChange($event)">
@@ -31,7 +17,22 @@
         </select>
       </div>
     </div>
-  </div>
+  
+    <!-- Vue principale -->
+    <div *ngIf="currentView === 'main'">
+      <div class="action-buttons">
+        <button class="btn btn-add" (click)="switchView('add')">
+          <i class="fas fa-plus"></i> Ajouter
+        </button>
+        <button class="btn btn-edit" (click)="switchView('edit')">
+          <i class="fas fa-edit"></i> Modifier
+        </button>
+        <button class="btn btn-delete" (click)="switchView('delete')">
+          <i class="fas fa-trash"></i> Supprimer
+        </button>
+      </div>
+    </div>
+  
 
   <!-- Vue Ajout -->
   <div *ngIf="currentView === 'add'">
@@ -74,7 +75,6 @@
           <label class="label">Nom</label>
           <input class="input" type="text" [(ngModel)]="matiere.nom" placeholder="Ex: Structures de données">
         </div>
-        <div class="form-row">
           <div class="form-group">
             <label class="label">Coefficient</label>
             <input class="input" type="number" [(ngModel)]="matiere.coefficient" min="1">
@@ -83,7 +83,6 @@
             <label class="label">Description</label>
             <input class="input" type="text" [(ngModel)]="matiere.description" >
           </div>
-        </div>
         <div class="form-group">
           <label class="label">Pondération</label>
             <input class="input" type="text" [(ngModel)]="matiere.ponderation" >
@@ -115,7 +114,6 @@
           <label class="label">Nom de la matière</label>
           <input class="input" type="text" [(ngModel)]="newMatiere.nom" placeholder="Ex: Programmation Orientée Objet">
         </div>
-        <div class="form-row">
           <div class="form-group">
             <label class="label">Coefficient</label>
             <input class="input" type="number" [(ngModel)]="newMatiere.coefficient" min="1">
@@ -124,7 +122,6 @@
             <label class="label">Description</label>
             <input class="input" type="text" [(ngModel)]="newMatiere.description" >
           </div>
-        </div>
         <div class="form-group">
           <label class="label">Pondération</label>
           <input class="input" type="text" [(ngModel)]="newMatiere.ponderation" >
