@@ -45,6 +45,7 @@ export class NotesComponent {
 
   uploadStatus = '';
   errorMessage = '';
+  errorMessage2='';
   notesFileName = '';
   isProcessing = false;
   idSection = 0;
@@ -188,7 +189,7 @@ export class NotesComponent {
       console.log('error');
     } else {
       this.students.forEach((exam) => {
-        console.log(exam);
+       
         this.newExam.lienCopie=exam.examPdfLink
         this.newExam.typeExam=this.typeExam;
         this.newExam.matiere=this.idMatiere;
@@ -197,7 +198,7 @@ export class NotesComponent {
         this.newExam.notes=exam.note
         this.examService.addNote(this.newExam).subscribe({
           next: (data) => {
-            console.log('notes added:', data);
+          
             this.successMessage = 'Les notes sont ajoutées avec succès !';
             setTimeout(() => {
               this.successMessage = '';
@@ -327,7 +328,7 @@ export class NotesComponent {
   private resetImportState(): void {
     this.students = [];
     this.uploadStatus = '';
-    this.errorMessage = '';
+    this.errorMessage2 = '';
   }
 
   resetTable() {
@@ -337,7 +338,7 @@ export class NotesComponent {
 
   private handleError(error: any): void {
     console.error(error);
-    this.errorMessage =
+    this.errorMessage2 =
       "Erreur lors de l'importation. Vérifiez le format du fichier.";
   }
 

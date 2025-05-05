@@ -17,11 +17,14 @@ export class ExamenService {
         body: JSON.stringify(exam) 
       })
       .then(response => {
+        if (response.status === 409) {
+            throw new Error('Un examen existe déjà pour cet étudiant, matière, type et session.');
+        }
         if (!response.ok) {
-          throw new Error('HTTP status ' + response.status);
+            throw new Error('HTTP status ' + response.status);
         }
         return response.json();
-      })
+    })    
       .then(data => observer.next(data))
       .catch(error => observer.error(error));
     });

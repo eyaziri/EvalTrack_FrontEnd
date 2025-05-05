@@ -25,7 +25,7 @@ export class ContentReclamationComponent implements OnInit {
       idEtudinat: 0,
     },
     administrateur: {
-      id: 4,
+      id: 1,
     },
   };
 

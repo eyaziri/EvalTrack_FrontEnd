@@ -104,12 +104,12 @@
   <div style="margin-top: 16px; text-align: right;">
     <button  *ngIf="students.length !== 0" (click)="addNotesToDB()" [disabled]="isProcessing" class="add-button">Ajouter</button>
   </div>
-  <div class="status-message success" *ngIf="uploadStatus && !errorMessage">
+  <div class="message success-message" *ngIf="uploadStatus && !errorMessage">
     <i class="fas fa-check-circle"></i> {{ uploadStatus }}
   </div>
   
-  <div class="status-message error" *ngIf="errorMessage">
-    <i class="fas fa-exclamation-circle"></i> {{ errorMessage }}
+  <div class="message error-message" *ngIf="errorMessage2">
+    <i class="fas fa-exclamation-circle"></i> {{ errorMessage2 }}
   </div>
   <div class="no-data" *ngIf="students.length === 0 && !isProcessing">
     <i class="fas fa-info-circle"></i> Aucune donnée d'étudiant à afficher

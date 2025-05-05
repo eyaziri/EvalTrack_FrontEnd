@@ -29,7 +29,7 @@
   padding: 10px;
   font-size: 14px;
   color: #333;
-  width: 150px;
+  width: 170px;
   margin: 10px;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -74,6 +74,7 @@
   width: 100%;
   border-collapse: collapse;
   margin-top: 20px;
+  margin-left: 10px;
 }
 
 .notes-table th, .notes-table td {
@@ -100,11 +101,15 @@
 .success-message {
   background-color: #4CAF50;
   color: white;
+  width: 500px;
+  margin-left: 360px;
 }
 
 .error-message {
   background-color: #f44336;
   color: white;
+  width: 500px;
+  margin-left: 360px;
 }
 
 .add-button {
@@ -162,6 +167,7 @@
 
   .table-container {
     font-size: 12px;
+    
   }
 
   .add-button {
