@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Build-Jdk-Spec: 17
+Implementation-Title: e-commerce-platform
+Implementation-Version: 1.0.0
+Main-Class: com.example.ecommerce.EcommerceApplication
+Created-By: Maven Integration for Eclipse
+
